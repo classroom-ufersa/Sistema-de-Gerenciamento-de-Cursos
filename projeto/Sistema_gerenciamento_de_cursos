@@ -1,0 +1,29 @@
+Projete um sistema na linguagem C para gerenciamento de cursos. Seu sistema precisará manipular cursos e alunos.
+Os cursos devem ter os atributos básicos:
+*número/código;
+*vagas;
+*alunos;
+*nome;
+
+Os alunos devem ter:
+*nome;
+*matricula;
+*curso;
+*notas;
+
+Um menu com as seguintes opções deverá ser apresentadas:
+1. Realizar matricula;
+2. Excluir matricula;
+3. Listar matriculados;
+4. Buscar curso;
+5. Editar matricula;
+6. Consultar vagas disponíveis para um dado curso;
+7. Consultar quantitativo de alunos em um curso;
+8. Sair 
+
+*Digite uma opção
+A opção sair é a única que permite sair do programa. Sendo assim, após cada operação, o programa volta ao menu.
+Além disso, você deve levar em consideração o seguinte: a cada execução do seu programa, os dados devem ser carregados 
+(armazenados em um arquivo texto); cada novo aluno cadastrada deve ser inserido em ordem alfabética (para isso, você pode utilizar 
+as funções da biblioteca padrão de C, string.h); você deve atualizar o arquivo texto para refletir o estado atual dos dados em virtude
+da adição ou remoção.   
