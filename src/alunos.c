@@ -27,3 +27,45 @@ Alunos *Criar_Alunos(int codigo, int vagas, char *alunos, char *nome) {
 
     return Var_Alunos;
 }
+
+void menu(){
+int escolha;
+
+printf("(1) Realizar matricula\n");
+printf("(2) Excluir matricula\n");
+printf("(3) Listar matriculados\n");
+printf("(4) Buscar curso\n");
+printf("(5) Editar matricula\n");
+printf("(6) Consultar vagas disponíveis para curso\n");
+printf("(7) Consultar quantitativo de alunos em um curso\n");
+printf("(8) Sair\n");
+
+scanf("%d",&escolha);
+
+switch(escolha){
+    case 1:
+        // Criar uma função para cada case.
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+    case 4:
+        break;
+    case 5:
+        break;
+    case 6:
+        break;
+    case 7:
+        break;
+    case 8:
+        break;
+    default:
+        menu();
+        break;
+
+}
+
+
+
+}
