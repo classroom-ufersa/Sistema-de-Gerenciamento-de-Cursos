@@ -7,3 +7,20 @@ struct cursos {
     int vagas;
     ListaAlunos *alunos;
 };
+
+Cursos *Criar_Cursos(char *nome, int codigo, int vagas) {
+    Cursos *Var_Cursos = (Cursos*)malloc(sizeof(Cursos));
+    if(Var_Cursos == NULL) {
+        printf("Erro ao alocar Var_Cursos! \n");
+        exit(1);
+    }
+
+    strcpy(Var_Cursos->nome, nome);
+    Var_Cursos->codigo;
+    Var_Cursos->vagas;
+
+    Var_Cursos->alunos = NULL;
+
+    return Var_Cursos;
+}
+
