@@ -1,4 +1,5 @@
-#include "alunos.c"
+#include "../alunos/alunos.c"
+#include "cursos.h"
 
 struct cursos {
     char nome[40];

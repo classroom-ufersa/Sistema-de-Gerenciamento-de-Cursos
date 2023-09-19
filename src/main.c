@@ -1,7 +1,6 @@
-#include "alunos.c"
+#include "./alunos/alunos.c"
 
 int main() {
-    Alunos *Criar_Alunos;
 
     menu();
 
