@@ -132,6 +132,10 @@ void Realizar_matricula(){
 
         vagas++;
 
+        if(resposta == 1) {
+            contador++;
+        }
+
         if(resposta == 2) {
             vagas = VAGAS;
             menu();
@@ -140,10 +144,17 @@ void Realizar_matricula(){
                 printf("Digite 1 ou 2 \n");
                 printf("Deseja cadastrar mais? |1.SIM | 2.NAO| \n");
                 scanf("%d", &resposta);
+                if(resposta == 1) {
+                    contador++;
+                } else if(resposta == 2) {
+                    vagas = VAGAS;
+                    menu();
+                } else {
+                    printf("Digite 1 ou 2 \n");
+                }
             }
         }      
     }
-        contador++;
 }
 
 void listar_matriculados(){
