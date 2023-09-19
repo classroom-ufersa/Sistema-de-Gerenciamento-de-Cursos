@@ -16,11 +16,15 @@ Cursos *Criar_Cursos(char *nome, int codigo, int vagas) {
     }
 
     strcpy(Var_Cursos->nome, nome);
-    Var_Cursos->codigo;
-    Var_Cursos->vagas;
+    Var_Cursos->codigo = codigo;
+    Var_Cursos->vagas = vagas;
 
     Var_Cursos->alunos = NULL;
 
     return Var_Cursos;
+}
+
+Cursos *Matricula_Alunos(Alunos *Var_Aluno) {
+    
 }
 
