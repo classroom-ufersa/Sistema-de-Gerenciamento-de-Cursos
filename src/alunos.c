@@ -31,6 +31,7 @@ Alunos *Criar_Alunos(int numero_matricula, int vagas, char *alunos, char *nome) 
 
 void menu(){
     int escolha;
+    char escolha_char;
 
     printf("=========================================\n");
     printf("(1) Criar Curso\n");
@@ -55,20 +56,42 @@ void menu(){
             Realizar_matricula();
             break;
         case 3:
+            listar_matriculados();
             break;
         case 4:
+            buscar_curso();
             break;
         case 5:
+            Editar_Matricula();
             break;
         case 6:
+            Consultar_Vagas();
             break;
         case 7:
+            Quantitativo();
             break;
         case 8:
+            while((escolha_char != 's') || (escolha_char != 'S') || (escolha_char != 'n') || (escolha_char != 'N')){
+                printf("REALMENTE DESEJA SAIR?\n");
+                printf("(s) Sim\n(n) Não\n>> ");
+                scanf("%c",&escolha_char);
+                
+                if((escolha_char == 's') || (escolha_char== 'S')){
+                    printf("Obrigado por usar o programa!\n");
+                    exit(1);
+                } 
+                if((escolha_char == 'n') || (escolha_char== 'N')){
+                    menu();
+                }
+            }
+
             break;
         case 9:
             break;
         default:
+            while(escolha!='\n'){
+                escolha=getchar();
+            }
             menu();
             break;
 
@@ -121,4 +144,36 @@ void Realizar_matricula(){
         }      
     }
         contador++;
+}
+
+void listar_matriculados(){
+    printf("NADA AINDA!");
+    
+    menu();
+}
+
+void buscar_curso(){
+    printf("PESQUISAR CURSOS\n"); // CABEÇALHO
+    printf("Informe o nome do curso\n>> ");
+    
+    menu();
+}
+
+void Editar_Matricula(){
+    printf("EDIÇÃO DE MATRICULAS\n"); // CABEÇALHO
+    printf("Buscar pelo nome do aluno\n>> ");
+
+    menu();
+}
+
+void Consultar_Vagas(){
+    printf("CUNSULTAR VAGAS DOS CURSOS\n"); // CABEÇALHO
+    printf("Informe o nome do curso\n>> ");
+
+    menu();
+}
+
+void Quantitativo(){
+    printf("QUANTIDADE DE ALUNOS NOS CURSOS\n"); // CABEÇALHO
+
 }
