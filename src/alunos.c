@@ -9,7 +9,7 @@
 struct alunos {
     int numero_matricula;
     int vagas;
-    char alunos[50];
+    char alunos[50]; //não faço ideia
     char nome[50];
     Cursos *struct_cursos;
 };
@@ -33,25 +33,26 @@ void menu(){
     int escolha;
 
     printf("=========================================\n");
-    printf("(1) Realizar matricula\n");
-    printf("(2) Excluir matricula\n");
-    printf("(3) Listar matriculados\n");
-    printf("(4) Buscar curso\n");
-    printf("(5) Editar matricula\n");
-    printf("(6) Consultar vagas disponíveis para curso\n");
-    printf("(7) Consultar quantitativo de alunos em um curso\n");
-    printf("(8) Sair\n");
+    printf("(1) Criar Curso\n");
+    printf("(2) Realizar Matricula\n");
+    printf("(3) Excluir Matricula\n");
+    printf("(4) Listar Matriculados\n");
+    printf("(5) Buscar Curso\n");
+    printf("(6) Editar Matricula\n");
+    printf("(7) Consultar Vagas Disponiveis Para o Curso\n");
+    printf("(8) Consultar Quantitativo De Alunos em um Curso\n");
+    printf("(9) Sair\n");
     printf("=========================================\n");
 
-    scanf("%d",&escolha);
+    scanf("%d", &escolha);
 
     switch(escolha){
         case 1:
-            // Criar uma função para cada case.
-            system("cls");
-            Realizar_matricula();
+            Criar_Curso();
             break;
         case 2:
+            system("cls");
+            Realizar_matricula();
             break;
         case 3:
             break;
@@ -65,6 +66,8 @@ void menu(){
             break;
         case 8:
             break;
+        case 9:
+            break;
         default:
             menu();
             break;
@@ -73,19 +76,49 @@ void menu(){
 
 }
 
+void Criar_Curso() {
+    Alunos *Var_Alunos = (Alunos*)malloc(sizeof(Alunos));
+    
+    printf("Informe o Nome do Curso: \n");
+    //scanf(" %[^\n]", Var_Alunos->struct_cursos);
+
+    //Cursos *CriarCurso = Criar_Cursos(NomeCurso, codigo, vagas, NomeAlunos);
+
+}
+
 void Realizar_matricula(){
-    Alunos *Var_Alunos;
+    int contador = 0, vagas = 0, resposta;
+
+    Alunos *Var_Alunos = (Alunos*)malloc(sizeof(Alunos));
 
     if(Var_Alunos->vagas == VAGAS) {
         printf("Vagas preenchidas! \n");
         exit(1);
     }
 
-    printf("Digite o nome do aluno: \n");
-    scanf(" %[^\n]", Var_Alunos->nome);
-    //getchar();
-    printf("Informe o codigo do aluno: \n");
-    scanf("%d", &Var_Alunos->numero_matricula);
-    Var_Alunos->vagas++;
+    while(vagas != VAGAS) {
+        printf("Digite o nome do aluno %i: \n", contador + 1);
+        scanf(" %[^\n]", Var_Alunos[contador].nome);
+        printf("Informe o codigo do aluno %i: \n", contador + 1);
+        scanf("%d", &Var_Alunos[contador].numero_matricula);
+        Var_Alunos->vagas++;
+        getchar();
 
+        printf("Deseja cadastrar mais? |1.SIM | 2.NAO| \n");
+        scanf("%d", &resposta);
+
+        vagas++;
+
+        if(resposta == 2) {
+            vagas = VAGAS;
+            menu();
+        } else if (resposta != 1 && resposta != 2) {
+            while(resposta != 1 && resposta != 2) {
+                printf("Digite 1 ou 2 \n");
+                printf("Deseja cadastrar mais? |1.SIM | 2.NAO| \n");
+                scanf("%d", &resposta);
+            }
+        }      
+    }
+        contador++;
 }
