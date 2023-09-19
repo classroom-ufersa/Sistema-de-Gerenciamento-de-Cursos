@@ -45,6 +45,8 @@ scanf("%d",&escolha);
 switch(escolha){
     case 1:
         // Criar uma função para cada case.
+        system("clear");
+        Realizar_matricula();
         break;
     case 2:
         break;
@@ -66,6 +68,11 @@ switch(escolha){
 
 }
 
+}
 
+void Realizar_matricula(){
+
+    printf("Digite o nome do aluno\n>> ");
+    printf("Informe o codigo do aluno\n>> ");
 
 }

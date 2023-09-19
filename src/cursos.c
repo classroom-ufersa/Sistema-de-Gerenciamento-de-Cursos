@@ -1,10 +1,10 @@
 #include "alunos.c"
 
 struct cursos {
-    char nome[50];
-    char curso[50];
-    int matricula;
-    float notas[3];
+   int codigo;
+   int vagas;
+   int alunos; // alunos matriculados no curço.
+   char nome[40];
     
 };
 
