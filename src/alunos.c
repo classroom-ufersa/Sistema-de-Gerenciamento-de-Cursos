@@ -73,8 +73,6 @@ switch(escolha){
 void Realizar_matricula(){
 
     printf("Digite o nome do aluno\n>> ");
-    scanf("%[^\n]",);
-   
-    
+    printf("Informe o codigo do aluno\n>> ");
 
 }
