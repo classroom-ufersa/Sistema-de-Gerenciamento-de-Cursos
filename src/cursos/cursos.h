@@ -5,4 +5,3 @@ typedef struct cursos Cursos;
 Cursos *Criar_Cursos(char *nome, int codigo, int vagas);
 
 Cursos *Matricula_Alunos(Alunos *Var_Aluno);
-
