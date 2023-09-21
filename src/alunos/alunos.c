@@ -16,7 +16,7 @@ struct listaalunos {
     ListaAlunos *prox;
 };
 
-Alunos *Criar_Alunos(char *nome, int numero_matricula) {
+Alunos *Criar_Alunos(char *nome, int numero_matricula, float notas[3]) {
     Alunos *Var_Alunos = (Alunos*)malloc(sizeof(Alunos));
     if(Var_Alunos == NULL) {
         printf("Erro ao alocar Var_Alunos dinamicamente! \n");

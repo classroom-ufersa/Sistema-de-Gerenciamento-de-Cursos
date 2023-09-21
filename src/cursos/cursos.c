@@ -10,6 +10,7 @@ struct cursos {
     ListaAlunos *alunos;
 };
 
+
 Cursos *Criar_Cursos(char *nome, int codigo, int vagas) {
     Cursos *Var_Cursos = (Cursos*)malloc(sizeof(Cursos));
     if(Var_Cursos == NULL) {
@@ -30,11 +31,16 @@ Cursos *Matricula_Alunos(Alunos *Var_Aluno, Cursos *Var_Cursos, int vagas) {
 
     //printf("\n\n%d\n\n", Var_Cursos->vagas); valor lixo
 
-    if(Var_Cursos->vagas > 0) {
-        printf("\n\n%d\n\n", Var_Cursos->vagas);
+    if (Var_Cursos->vagas >= VAGAS) {
+        printf("Vagas cheias no curso %s!\n", Var_Cursos->nome);
+        return Var_Cursos; // Retorna o curso sem fazer a matrícula
     }
 
-    if(vagas >= 0) {
+     if(Var_Cursos->vagas > 0) {
+        printf("\n\n%d\n\n", Var_Cursos->vagas);
+    } 
+
+    if(Var_Cursos->vagas > 0) {
         ListaAlunos *novo = (ListaAlunos*)malloc(sizeof(ListaAlunos));
         if(novo == NULL) {
             printf("A variavel novo nao foi alocada! \n");
@@ -44,16 +50,23 @@ Cursos *Matricula_Alunos(Alunos *Var_Aluno, Cursos *Var_Cursos, int vagas) {
         novo->aluno = *Var_Aluno;
         novo->prox = Var_Cursos->alunos;
         Var_Cursos->alunos = novo;
+
+        printf("Aluno matriculado com sucesso no curso %s!\n", Var_Cursos->nome);
+
         Var_Cursos->vagas--;
 
-        printf("Aluno matriculado com sucesso! \n");
+        return Var_Cursos;
+
+    } else {
+        printf("Vagas cheias no curso %s!\n", Var_Cursos->nome);
+        return NULL; // Retorna NULL para indicar que a matrícula não foi feita
     }
-    return Var_Cursos;
 }
 
-void imprimir(Alunos *Var_Aluno, Cursos *Var_Cursos) {
-    
-}
+
+
+
+
 
 
 
