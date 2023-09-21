@@ -9,11 +9,11 @@ int main() {
     char NomeAluno[50];
     int NumeroMatricula;
     int contador = 0, SairCase = 0;
-    int contador2 = 0, Vagas2 = 0;
+    int contador2 = 0;
 
     char NomeCurso[50];
     int CodigoCurso;
-    int Vagas = 0; //limite de vagas no curso criado
+    int Vagas = 0, Vagas2 = 0; //limite de vagas no curso criado
 
     int MenuEscolha;
 
@@ -37,6 +37,14 @@ int main() {
                 printf("Deseja continuar cadastrando? |1.SIM| 2.NAO| ");
                 scanf("%d", &SairCase);
 
+                if(SairCase == 1) {
+                    Var_Alunos = (Alunos*)realloc(Var_Alunos, contador + 1 * sizeof(Alunos));
+                    if(Var_Alunos == NULL) {
+                        printf("Realocacao de Var_Alunos falhou! \n");
+                        exit(1);
+                    }
+                } 
+
                 //printf("\n\nVagas: %d, contador: %d\n", Vagas, contador); checar valores (pode ignorar)
 
                 if(SairCase != 1 && SairCase != 2) {
@@ -55,7 +63,6 @@ int main() {
             case 2:  
                 system("cls");
                 SairCase = 0;
-
                 if(Vagas2 == VAGAS) {
                     printf("Vagas cheias! \n");
                 }
@@ -74,6 +81,14 @@ int main() {
 
                         printf("Deseja continuar cadastrando? |1.SIM| 2.NAO| ");
                         scanf("%d", &SairCase);
+
+                        if(SairCase == 1) {
+                            Var_Cursos = (Cursos*)realloc(Var_Cursos, contador2 + 1 * sizeof(Cursos));
+                            if(Var_Cursos == NULL) {
+                                printf("Realocacao de Var_Cursos falhou! \n");
+                                exit(1);
+                            }
+                        }
 
                         printf("\n\nVagas: %d, contador: %d\n", Vagas2, contador2);  
 

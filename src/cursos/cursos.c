@@ -51,5 +51,9 @@ Cursos *Matricula_Alunos(Alunos *Var_Aluno, Cursos *Var_Cursos, int vagas) {
     return Var_Cursos;
 }
 
+void imprimir(Alunos *Var_Aluno, Cursos *Var_Cursos) {
+    
+}
+
 
 
