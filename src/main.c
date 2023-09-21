@@ -1,4 +1,5 @@
-#include "./alunos/alunos.c"
+#include "./alunos/alunos.h"
+#include "./cursos/cursos.c"
 
 int main() {
 
@@ -8,16 +9,17 @@ int main() {
 
     char NomeCurso[50];
     int CodigoCurso;
-    int Vagas; //limite de vagas no curso criado
+    int Vagas = 0; //limite de vagas no curso criado
 
     int MenuEscolha;
 
-    menu();
-    scanf("%d", &MenuEscolha);
-
     do{
+        menu();
+        scanf("%d", &MenuEscolha);
+
         switch(MenuEscolha) {
         case 1:
+            SairCase = 0;
             while(SairCase != 2 && Vagas <= 15) {
                 printf("Informe o nome do aluno(a) %i: ", contador + 1);
                 scanf(" %[^\n]", NomeAluno);
@@ -30,11 +32,16 @@ int main() {
                 printf("Infome o curso que gostaria de se matricular: ");
                 scanf(" %[^\n]", NomeCurso);
                 printf("Informe o codigo do curso: ");
-                scanf("%d", &CodigoCurso);
+                scanf("%d", &CodigoCurso); 
+                getchar();
 
                 printf("Deseja continuar cadastrando? |1.SIM| 2.NAO| ");
                 scanf("%d", &SairCase);
-                getchar();
+
+                contador++;
+                Vagas++;
+
+                Cursos *Var_Cursos = Criar_Cursos(NomeCurso, CodigoCurso, Vagas);
 
                 if(SairCase != 1 && SairCase != 2) {
                     while(SairCase != 1 && SairCase != 2) {
@@ -44,11 +51,9 @@ int main() {
                     }
                 }
                 if(SairCase == 2) {
-                    menu();
-                } 
+                    
+                }
 
-                contador++;
-                Vagas++;
             }
             
             break;
@@ -72,8 +77,6 @@ int main() {
         }
 
     } while(MenuEscolha != 8);
-
-    //Cursos *Novo_Aluno = Matricula_Alunos(Var_Aluno);
 
     return 0;
 }
