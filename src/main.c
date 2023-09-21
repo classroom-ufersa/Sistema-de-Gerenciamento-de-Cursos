@@ -3,9 +3,13 @@
 
 int main() {
 
+    Alunos *Var_Alunos = (Alunos*)malloc(sizeof(Alunos));
+    Cursos *Var_Cursos = (Cursos*)malloc(sizeof(Cursos));
+
     char NomeAluno[50];
     int NumeroMatricula;
     int contador = 0, SairCase = 0;
+    int contador2 = 0, Vagas2 = 0;
 
     char NomeCurso[50];
     int CodigoCurso;
@@ -19,29 +23,21 @@ int main() {
 
         switch(MenuEscolha) {
         case 1:
+            system("cls");
             SairCase = 0;
-            while(SairCase != 2 && Vagas <= 15) {
+            while(SairCase != 2) {
                 printf("Informe o nome do aluno(a) %i: ", contador + 1);
                 scanf(" %[^\n]", NomeAluno);
                 printf("Infome o numero de matricula do aluno(a) %i: ", contador + 1);
                 scanf("%d", &NumeroMatricula);
                 getchar();
 
-                Alunos *Var_Aluno = Criar_Alunos(NomeAluno, NumeroMatricula);
-
-                printf("Infome o curso que gostaria de se matricular: ");
-                scanf(" %[^\n]", NomeCurso);
-                printf("Informe o codigo do curso: ");
-                scanf("%d", &CodigoCurso); 
-                getchar();
+                Alunos *VarAluno = Criar_Alunos(NomeAluno, NumeroMatricula);
 
                 printf("Deseja continuar cadastrando? |1.SIM| 2.NAO| ");
                 scanf("%d", &SairCase);
 
-                contador++;
-                Vagas++;
-
-                Cursos *Var_Cursos = Criar_Cursos(NomeCurso, CodigoCurso, Vagas);
+                //printf("\n\nVagas: %d, contador: %d\n", Vagas, contador); checar valores (pode ignorar)
 
                 if(SairCase != 1 && SairCase != 2) {
                     while(SairCase != 1 && SairCase != 2) {
@@ -50,33 +46,77 @@ int main() {
                         scanf("%d", &SairCase);
                     }
                 }
-                if(SairCase == 2) {
-                    
-                }
-
+                contador++;
+                Vagas++;
             }
             
             break;
 
-            case 2:
+            case 2:  
+                system("cls");
+                SairCase = 0;
+
+                if(Vagas2 == VAGAS) {
+                    printf("Vagas cheias! \n");
+                }
+                while(SairCase != 2 && Vagas2 != VAGAS) {
+                    if(Vagas2 <= VAGAS) {
+                        Vagas2++; 
+                        printf("Infome o curso que gostaria de se matricular: ");
+                        scanf(" %[^\n]", NomeCurso);
+                        printf("Informe o codigo do curso: ");
+                        scanf("%d", &CodigoCurso); 
+                        getchar();
+
+                        Cursos *VarCursos = Criar_Cursos(NomeCurso, CodigoCurso, Vagas);
+
+                        Cursos *MatriculaAlunos = Matricula_Alunos(Var_Alunos, Var_Cursos, Vagas);
+
+                        printf("Deseja continuar cadastrando? |1.SIM| 2.NAO| ");
+                        scanf("%d", &SairCase);
+
+                        printf("\n\nVagas: %d, contador: %d\n", Vagas2, contador2);  
+
+                        if(SairCase != 1 && SairCase != 2) {
+                            while(SairCase != 1 && SairCase != 2) {
+                                printf("Voce digitou uma opcao invalida! \n");
+                                printf("Deseja continuar cadastrando? |1.SIM| 2.NAO| ");
+                                scanf("%d", &SairCase);
+                            }
+                        }
+                        contador2++;
+                    } else {
+                        printf("\nVagas cheias no curso! \n\n");
+                        break;
+                    }
+                }
+
                 break;
             case 3:
                 break;
+
             case 4:
                 break;
             case 5:
                 break;
-            case 6: 
+            case 6:
                 break;
             case 7:
                 break;
-            case 8:
+            case 8: 
+                break;
+            case 9:
+                break;
+            case 10:
                 break;
             default:
                 printf("Voce digitou um opcao invalida! \n");
         }
 
-    } while(MenuEscolha != 8);
+    } while(MenuEscolha != 10);
+
+    // Libera a memória alocada para alunos
+    free(Var_Alunos);
 
     return 0;
 }

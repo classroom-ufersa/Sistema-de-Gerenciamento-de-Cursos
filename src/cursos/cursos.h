@@ -4,4 +4,7 @@ typedef struct cursos Cursos;
 /*Função para criar os cursos*/
 Cursos *Criar_Cursos(char *nome, int codigo, int vagas);
 
-Cursos *Matricula_Alunos(Alunos *Var_Aluno);
+Cursos *Matricula_Alunos(Alunos *Var_Aluno, Cursos *Var_Cursos, int vagas);
+
+ListaAlunos *inserir_aluno(ListaAlunos *lista, Alunos *aluno);
+

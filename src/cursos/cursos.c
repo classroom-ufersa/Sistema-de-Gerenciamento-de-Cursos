@@ -1,6 +1,8 @@
 #include "../alunos/alunos.c"
 #include "cursos.h"
 
+#define VAGAS 3
+
 struct cursos {
     char nome[50];
     int codigo;
@@ -24,7 +26,30 @@ Cursos *Criar_Cursos(char *nome, int codigo, int vagas) {
     return Var_Cursos;
 }
 
-Cursos *Matricula_Alunos(Alunos *Var_Aluno) {
-    
+Cursos *Matricula_Alunos(Alunos *Var_Aluno, Cursos *Var_Cursos, int vagas) {
+
+    //printf("\n\n%d\n\n", Var_Cursos->vagas); valor lixo
+
+    if(Var_Cursos->vagas > 0) {
+        printf("\n\n%d\n\n", Var_Cursos->vagas);
+    }
+
+    if(vagas >= 0) {
+        ListaAlunos *novo = (ListaAlunos*)malloc(sizeof(ListaAlunos));
+        if(novo == NULL) {
+            printf("A variavel novo nao foi alocada! \n");
+            exit(1);
+        }
+
+        novo->aluno = *Var_Aluno;
+        novo->prox = Var_Cursos->alunos;
+        Var_Cursos->alunos = novo;
+        Var_Cursos->vagas--;
+
+        printf("Aluno matriculado com sucesso! \n");
+    }
+    return Var_Cursos;
 }
+
+
 
