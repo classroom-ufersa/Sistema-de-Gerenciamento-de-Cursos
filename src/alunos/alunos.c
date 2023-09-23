@@ -35,6 +35,8 @@ Alunos *Criar_Alunos(char *nome, int numero_matricula, float notas[3]) {
     return Var_Alunos;
 }
 
+
+
 void Imprimir_Alunos(Alunos *Var_Alunos, int contador) {
     int Sair = 0;
 
