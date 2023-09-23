@@ -27,15 +27,19 @@ int main() {
             system("cls");
             SairCase = 0;
             while(SairCase != 2) {
-                printf("Informe o nome do aluno(a) %i: ", contador + 1);
+                contador++;
+                Vagas++;
+                printf("Informe o nome do aluno(a) %i: ", contador);
                 scanf(" %[^\n]", NomeAluno);
-                printf("Infome o numero de matricula do aluno(a) %i: ", contador + 1);
+                printf("Infome o numero de matricula do aluno(a) %i: ", contador);
                 scanf("%d", &NumeroMatricula);
                 for(int i = 0; i < 3; i++) {
                     printf("Digite a nota %i: ", i + 1);
-                    scanf(" %f", &notas[i]);
+                    scanf("%f", &notas[i]);
                 }
                 getchar();
+
+                //printf("\n\nVagas: %d, contador: %d\n", Vagas, contador); //checar valores (pode ignorar)
 
                 Alunos *VarAluno = Criar_Alunos(NomeAluno, NumeroMatricula, notas);
 
@@ -50,7 +54,7 @@ int main() {
                     }
                 } 
 
-                //printf("\n\nVagas: %d, contador: %d\n", Vagas, contador); checar valores (pode ignorar)
+                Var_Alunos[contador - 1] = *VarAluno;
 
                 if(SairCase != 1 && SairCase != 2) {
                     while(SairCase != 1 && SairCase != 2) {
@@ -59,8 +63,6 @@ int main() {
                         scanf("%d", &SairCase);
                     }
                 }
-                contador++;
-                Vagas++;
             }
             
             break;
@@ -72,6 +74,7 @@ int main() {
                     printf("Vagas cheias! \n");
                 }
                 while(SairCase != 2) {
+                    contador2++;
                     Vagas2++; 
                     printf("Infome o curso que gostaria de se matricular: ");
                     scanf(" %[^\n]", NomeCurso);
@@ -79,18 +82,20 @@ int main() {
                     scanf("%d", &CodigoCurso); 
                     getchar();
 
-                    Cursos *VarCursos = Criar_Cursos(NomeCurso, CodigoCurso, Vagas);
+                    Cursos *VarCursos = Criar_Cursos(NomeCurso, CodigoCurso, Vagas2);
 
                     printf("Deseja continuar cadastrando? |1.SIM| 2.NAO| ");
                     scanf("%d", &SairCase);
 
                     if(SairCase == 1) {
-                        Var_Cursos = (Cursos*)realloc(Var_Cursos, (contador2 + 1) * sizeof(Cursos));
+                        Var_Cursos = (Cursos*)realloc(Var_Cursos, (contador2 + 10) * sizeof(Cursos));
                         if(Var_Cursos == NULL) {
                             printf("Realocacao de Var_Cursos falhou! \n");
                             exit(1);
                         }
                     }
+
+                    Var_Cursos[contador2 - 1] = *VarCursos;
 
                     printf("\n\nVagas: %d, contador: %d\n", Vagas2, contador2);  
 
@@ -101,12 +106,11 @@ int main() {
                             scanf("%d", &SairCase);
                         }
                     }
-                    contador2++;
                 }
 
                 break;
             case 3:
-                //Cursos *MatriculaAlunos = Matricula_Alunos(Var_Alunos, Var_Cursos, Vagas);
+                Imprimir_Alunos(Var_Alunos, contador);
 
                 break;
 
