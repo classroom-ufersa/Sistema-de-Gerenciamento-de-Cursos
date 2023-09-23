@@ -29,10 +29,46 @@ Alunos *Criar_Alunos(char *nome, int numero_matricula, float notas[3]) {
     int contador;
 
     for(contador = 0; contador < 3; contador++) {
-        Var_Alunos->notas[contador] = 0;
+        Var_Alunos->notas[contador] = notas[contador];
     }
 
     return Var_Alunos;
+}
+
+void Imprimir_Alunos(Alunos *Var_Alunos, int contador) {
+    int Sair = 0;
+
+    if(Var_Alunos == NULL) {
+        printf("Nada foi cadastrado! \n");
+    }
+
+    if(Var_Alunos != NULL) {
+        for(int i = 0; i < contador; i++) {
+            printf("\n");
+            printf("Nome: %s\n", Var_Alunos[i].nome);
+            printf("Matricula: %d\n", Var_Alunos[i].numero_matricula);
+            for(int j = 0; j < 3; j++) {
+                printf("Nota %d: %.f\n", i + 1, Var_Alunos[i].notas[i]);
+            }
+        }
+    }
+
+    printf("\nDeseja voltar ao Menu? |1.SIM | 2.NAO| \n");
+    scanf("%d", &Sair);
+
+    if(Sair != 1) {
+        while(Sair != 1) {
+            for(int i = 0; i < contador; i++) {
+                printf("\nNome: %s\n", Var_Alunos[i].nome);
+                printf("Matricula: %d\n", Var_Alunos[i].numero_matricula);
+                for(i = 0; i < 3; i++) {
+                    printf("Nota %d: %.f\n", i + 1, Var_Alunos[i].notas[i]);
+                }
+                printf("\nOkay! Caso queria sair digite 1 a qualquer momento! \n");
+                scanf("%d", &Sair);
+            }
+        }
+    }  
 }
 
 void menu() {
