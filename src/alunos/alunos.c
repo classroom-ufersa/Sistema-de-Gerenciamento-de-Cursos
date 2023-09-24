@@ -52,7 +52,7 @@ void AdicionarAluno(ListaAlunos **lista, Alunos *Var_Alunos) {
 
 void ImprimirAlunos(ListaAlunos *lista) {
     if (lista == NULL) {
-        printf("Nenhum aluno cadastrado!\n");
+        printf("\nNenhum aluno cadastrado!\n");
     } else {
 
         int i = 1;

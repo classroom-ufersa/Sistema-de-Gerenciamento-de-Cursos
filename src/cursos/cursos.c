@@ -37,14 +37,17 @@ Cursos *Criar_Cursos(char *nome, int codigo, int vagas) {
 }
 
 void Imprimir_Cursos(Cursos *Var_Cursos, int contador2) {
-    printf("DISCIPLINAS DISPONIVEIS: \n");
-    if(Var_Cursos == NULL) {
+    printf("==========================");
+    printf("\nDISCIPLINAS DISPONIVEIS: \n");
+    if(contador2 == 0) {
         printf("Nao ha nada cadastrado! \n");
+        printf("========================\n");
     } else {
         for(int i = 0; i < contador2; i++) {
             printf("\n");
             printf("Nome da Disciplina %d: %s\n", i + 1, Var_Cursos[i].nome);
             printf("Codigo da Disciplina %d: %d\n", i + 1, Var_Cursos[i].codigo);
         }
+        printf("==========================\n");
     } 
 }

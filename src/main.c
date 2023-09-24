@@ -12,7 +12,7 @@ int main() {
     int contador = 0, SairCase = 0;
     int contador2 = 0, Vagas2 = 0;
 
-    int escolha, sair;
+    int escolha = 0;
 
     char NomeCurso[50];
     int CodigoCurso;
@@ -103,37 +103,47 @@ int main() {
 
                 break;
             case 3:
-                sair = 0;
                 do {
+                    system("cls");
                     Imprimir_Cursos(Var_Cursos, contador2);
-                    printf("Lista de alunos disponiveis para se matricular: \n");
+                    printf("\nLISTA DE ALUNOS: \n");
                     ImprimirAlunos(listaAlunos);
 
-                    printf("Informe | 1.NOME | 2.CODIGO | 3.SAIR DA MATRICULA |: ");
-                    scanf("%d", &escolha);
-
-                    switch(escolha) {
-                        case 1:
-                            printf("Digite o nome: ");
-                            scanf(" %[^\n]", Var_Cursos->MatriculaAluno->nome);
-                            getchar();
-                            break;
-                        case 2:
-                            printf("Digite o codigo: ");
-                            scanf("%d", &Var_Cursos->MatriculaAluno->matricula);
-                            break;
-                        case 3:
-                            break;
-                        default:
-                            printf("Digite uma opcao valida! \n");
-                    }
+                    if(listaAlunos == NULL || contador2 == 0) {
+                        printf("\nDigite 3 para sair! \n");
+                        scanf("%d", &escolha);
+                        if(escolha != 3) {
+                            while(escolha != 3) {
+                                printf("\nDigite 3 para sair! \n");
+                                scanf("%d", &escolha);
+                            }
+                        }
+                    } else {
+                        escolha = 0;
+                        printf("\nInforme | 1.NOME | 2.CODIGO | 3.SAIR DA MATRICULA |: ");
+                        scanf("%d", &escolha);
+                        switch(escolha) {
+                            case 1:
+                                printf("Digite o nome: ");
+                                scanf(" %[^\n]", Var_Cursos->MatriculaAluno->nome);
+                                getchar();
+                                break;
+                            case 2:
+                                printf("Digite o codigo: ");
+                                scanf("%d", &Var_Cursos->MatriculaAluno->matricula);
+                                break;
+                            case 3:
+                                break;
+                            default:
+                                printf("Digite uma opcao valida! \n");
+                        }
+                    } 
+                       
                 } while(escolha != 3);
-
-
+                
                 break;
 
             case 4:
-                Imprimir_Cursos(Var_Cursos, contador2);
                 break;
             case 5:
                 break;
