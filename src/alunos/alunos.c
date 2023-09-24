@@ -26,51 +26,49 @@ Alunos *Criar_Alunos(char *nome, int numero_matricula, float notas[3]) {
     strcpy(Var_Alunos->nome, nome);
     Var_Alunos->numero_matricula = numero_matricula;
 
-    int contador;
-
-    for(contador = 0; contador < 3; contador++) {
+    for(int contador = 0; contador < 3; contador++) {
         Var_Alunos->notas[contador] = notas[contador];
     }
 
     return Var_Alunos;
+} 
+
+ListaAlunos *CriarAluno(Alunos *Var_Alunos) {
+    ListaAlunos *novo = (ListaAlunos*)malloc(sizeof(ListaAlunos));
+    if (novo == NULL) {
+        printf("Erro ao alocar memória para o aluno!\n");
+        exit(1);
+    }
+    novo->aluno = *Var_Alunos;
+    novo->prox = NULL;
+    return novo;
 }
 
+void AdicionarAluno(ListaAlunos **lista, Alunos *Var_Alunos) {
+    ListaAlunos *novo = CriarAluno(Var_Alunos);
+    novo->prox = *lista;
+    *lista = novo;
+}
 
+void ImprimirAlunos(ListaAlunos *lista) {
+    if (lista == NULL) {
+        printf("Nenhum aluno cadastrado!\n");
+    } else {
 
-void Imprimir_Alunos(Alunos *Var_Alunos, int contador) {
-    int Sair = 0;
+        int i = 1;
+        ListaAlunos *atual = lista;
 
-    if(Var_Alunos == NULL) {
-        printf("Nada foi cadastrado! \n");
-    }
-
-    if(Var_Alunos != NULL) {
-        for(int i = 0; i < contador; i++) {
+        while (atual != NULL) {
+            Alunos aluno = atual->aluno;
+            printf("Aluno %d:\n", i);
+            printf("Nome: %s\n", aluno.nome);
+            printf("Matricula: %d\n", aluno.numero_matricula);
+            printf("Notas: %.2f, %.2f, %.2f\n", aluno.notas[0], aluno.notas[1], aluno.notas[2]);
             printf("\n");
-            printf("Nome: %s\n", Var_Alunos[i].nome);
-            printf("Matricula: %d\n", Var_Alunos[i].numero_matricula);
-            for(int j = 0; j < 3; j++) {
-                printf("Nota %d: %.f\n", i + 1, Var_Alunos[i].notas[i]);
-            }
+            atual = atual->prox;
+            i++;
         }
     }
-
-    printf("\nDeseja voltar ao Menu? |1.SIM | 2.NAO| \n");
-    scanf("%d", &Sair);
-
-    if(Sair != 1) {
-        while(Sair != 1) {
-            for(int i = 0; i < contador; i++) {
-                printf("\nNome: %s\n", Var_Alunos[i].nome);
-                printf("Matricula: %d\n", Var_Alunos[i].numero_matricula);
-                for(i = 0; i < 3; i++) {
-                    printf("Nota %d: %.f\n", i + 1, Var_Alunos[i].notas[i]);
-                }
-                printf("\nOkay! Caso queria sair digite 1 a qualquer momento! \n");
-                scanf("%d", &Sair);
-            }
-        }
-    }  
 }
 
 void menu() {
