@@ -33,6 +33,29 @@ Alunos *Criar_Alunos(char *nome, int numero_matricula, float notas[3]) {
     return Var_Alunos;
 } 
 
+void Imprimir_Alunos(Alunos *Var_Alunos, int contador) {
+    int Sair = 0;
+    if(contador == 0) {
+        printf("Nada foi cadastrado! \n");
+    }
+    if(Var_Alunos != NULL) {
+        
+        for(int i = 0; i < contador; i++) {
+            printf("\n");
+            printf("Nome: %s\n", Var_Alunos[i].nome);
+            printf("Matricula: %d\n", Var_Alunos[i].numero_matricula);
+            for(int j = 0; j < 3; j++) {
+                printf("Nota %d: %.f\n", i + 1, Var_Alunos[i].notas[j]);
+            }
+            /* printf("\nDeseja voltar ao Menu? |1.SIM | 2.NAO| \n");
+            scanf("%d", &Sair);
+            if(Sair != 1 && Sair != 2) {
+                printf("Digite uma opcao valida! \n");
+            } */
+        } 
+    }
+}
+
 ListaAlunos *CriarAluno(Alunos *Var_Alunos) {
     ListaAlunos *novo = (ListaAlunos*)malloc(sizeof(ListaAlunos));
     if (novo == NULL) {

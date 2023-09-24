@@ -4,18 +4,11 @@
 
 #define VAGAS 3
 
-union aluno_matricula {
-    char nome[50];
-    int matricula;
-};
-
-
 struct cursos {
     char nome[50];
     int codigo;
     int vagas;
     ListaAlunos *alunos;
-    AlunoMatricula *MatriculaAluno;
 };
 
 Cursos *Criar_Cursos(char *nome, int codigo, int vagas) {

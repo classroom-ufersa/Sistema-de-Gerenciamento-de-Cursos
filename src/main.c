@@ -1,7 +1,13 @@
 #include "./alunos/alunos.h"
 #include "./cursos/cursos.c"
 
+union aluno_matricula {
+    char nome[50];
+    int matricula;
+};
+
 int main() {
+    AlunoMatricula *aluno;
     ListaAlunos *listaAlunos = NULL;
     Alunos *Var_Alunos = (Alunos*)malloc(sizeof(Alunos));
     Cursos *Var_Cursos = (Cursos*)malloc(sizeof(Cursos)); 
@@ -21,7 +27,7 @@ int main() {
     int MenuEscolha;
 
     do{
-        //system("cls");
+        system("cls");
         menu();
         scanf("%d", &MenuEscolha);
 
@@ -45,7 +51,9 @@ int main() {
 
                     Alunos *VarAluno = Criar_Alunos(NomeAluno, NumeroMatricula, notas);
 
-                    AdicionarAluno(&listaAlunos, VarAluno);
+                    Var_Alunos[contador - 1] = *VarAluno;
+
+                    //AdicionarAluno(&listaAlunos, VarAluno);
 
                     printf("Deseja continuar cadastrando? |1.SIM| 2.NAO| ");
                     scanf("%d", &SairCase);
@@ -103,13 +111,13 @@ int main() {
 
                 break;
             case 3:
-                do {
+                escolha = 0;
+                while(escolha != 3) {
                     system("cls");
                     Imprimir_Cursos(Var_Cursos, contador2);
                     printf("\nLISTA DE ALUNOS: \n");
-                    ImprimirAlunos(listaAlunos);
-
-                    if(listaAlunos == NULL || contador2 == 0) {
+                    Imprimir_Alunos(Var_Alunos, contador);
+                    if(contador == 0 || contador2 == 0) {
                         printf("\nDigite 3 para sair! \n");
                         scanf("%d", &escolha);
                         if(escolha != 3) {
@@ -125,12 +133,12 @@ int main() {
                         switch(escolha) {
                             case 1:
                                 printf("Digite o nome: ");
-                                scanf(" %[^\n]", Var_Cursos->MatriculaAluno->nome);
-                                getchar();
+                                scanf(" %[^\n]", aluno->nome);
+                                getchar(); 
                                 break;
                             case 2:
                                 printf("Digite o codigo: ");
-                                scanf("%d", &Var_Cursos->MatriculaAluno->matricula);
+                                scanf("%d", &aluno->matricula);
                                 break;
                             case 3:
                                 break;
@@ -139,11 +147,12 @@ int main() {
                         }
                     } 
                        
-                } while(escolha != 3);
+                } 
                 
                 break;
 
             case 4:
+                //ImprimirAlunos(listaAlunos);
                 break;
             case 5:
                 break;

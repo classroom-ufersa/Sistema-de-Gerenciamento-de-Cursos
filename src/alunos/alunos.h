@@ -7,6 +7,8 @@ typedef struct listaalunos ListaAlunos;
 /* Função para criar alunos */
 Alunos *Criar_Alunos(char *nome, int numero_matricula, float notas[3]);
 
+void Imprimir_Alunos(Alunos *Var_Alunos, int contador);
+
 ListaAlunos *CriarAluno(Alunos *Var_Alunos);
 
 void AdicionarAluno(ListaAlunos **lista, Alunos *Var_Alunos);
