@@ -1,13 +1,19 @@
 #include "./alunos/alunos.h"
 #include "./cursos/cursos.c"
 
+union aluno_curso {
+    char NomeCurso[50];
+    int Codigo;
+};
+
 union aluno_matricula {
-    char nome[50];
-    int matricula;
+    char NomeAluno[50];
+    int Matricula;
 };
 
 int main() {
-    AlunoMatricula *aluno;
+    AlunoCurso *Alunocurso = (AlunoCurso*)malloc(sizeof(AlunoCurso));
+    AlunoMatricula *Alunomatricula = (AlunoMatricula*)malloc(sizeof(AlunoMatricula));
     ListaAlunos *listaAlunos = NULL;
     Alunos *Var_Alunos = (Alunos*)malloc(sizeof(Alunos));
     Cursos *Var_Cursos = (Cursos*)malloc(sizeof(Cursos)); 
@@ -16,9 +22,9 @@ int main() {
     int NumeroMatricula;
     float notas[3];
     int contador = 0, SairCase = 0;
-    int contador2 = 0, Vagas2 = 0;
+    int contador2 = 0, contador3 = 0, Vagas2 = 0;
 
-    int escolha = 0;
+    int escolha = 0, escolha2 = 0;
 
     char NomeCurso[50];
     int CodigoCurso;
@@ -77,7 +83,7 @@ int main() {
                 while(SairCase != 2) { 
                     contador2++;
                     Vagas2++;
-                    printf("Infome o curso que gostaria de se matricular: ");
+                    printf("Infome a disciplina: ");
                     scanf(" %[^\n]", NomeCurso);
                     printf("Informe o codigo do curso: ");
                     scanf("%d", &CodigoCurso); 
@@ -112,6 +118,7 @@ int main() {
                 break;
             case 3:
                 escolha = 0;
+                contador3 = 0;
                 while(escolha != 3) {
                     system("cls");
                     Imprimir_Cursos(Var_Cursos, contador2);
@@ -128,22 +135,56 @@ int main() {
                         }
                     } else {
                         escolha = 0;
-                        printf("\nInforme | 1.NOME | 2.CODIGO | 3.SAIR DA MATRICULA |: ");
+                        contador3++;
+                        printf("Informe | 1. ALUNO | 2. MATRICULA | 3. SAIR DA MATRICULA |: \n");
                         scanf("%d", &escolha);
+
                         switch(escolha) {
                             case 1:
-                                printf("Digite o nome: ");
-                                scanf(" %[^\n]", aluno->nome);
-                                getchar(); 
+                                printf("Informe o nome do aluno: ");
+                                scanf(" %[^\n]", Alunomatricula->NomeAluno);
+                                getchar();
                                 break;
                             case 2:
-                                printf("Digite o codigo: ");
-                                scanf("%d", &aluno->matricula);
+                                printf("Informe a matricula do aluno: ");
+                                scanf("%d", &Alunomatricula->Matricula);
                                 break;
                             case 3:
                                 break;
                             default:
                                 printf("Digite uma opcao valida! \n");
+                        } 
+                        if(escolha == 3) {
+                            break;
+                        } else {
+                            escolha == 0;
+                        }
+                        printf("\nInforme | 1.CURSO | 2.CODIGO | 3.SAIR DA MATRICULA |: ");
+                        scanf("%d", &escolha);
+                        switch(escolha) {
+                            case 1:
+                                printf("Digite o nome: ");
+                                scanf(" %[^\n]", Alunocurso->NomeCurso);
+                                getchar(); 
+                                break;
+                            case 2:
+                                printf("Digite o codigo: ");
+                                scanf("%d", &Alunocurso->Codigo);
+                                break;
+                            case 3:
+                                break;
+                            default:
+                                printf("Digite uma opcao valida! \n");
+                        }
+                        Alunomatricula = (AlunoMatricula*)realloc(Alunomatricula, (contador3) * sizeof(AlunoMatricula));
+                        if(Alunomatricula == NULL) {
+                            printf("Erro ao alocar Alunomatricula! \n");
+                            exit(1);
+                        } 
+                        Alunocurso = (AlunoCurso*)realloc(Alunocurso, (contador3) * sizeof(AlunoCurso));
+                        if(Alunocurso == NULL) {
+                            printf("Erro ao alocar Alunocurso! \n");
+                            exit(1);
                         }
                     } 
                        
