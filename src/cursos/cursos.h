@@ -1,6 +1,8 @@
 /*Função para alocar a struct dinâmicamente*/
 typedef struct cursos Cursos;
 
+typedef union aluno_curso AlunoCurso;
+
 typedef union aluno_matricula AlunoMatricula;
 
 /*Função para criar os cursos*/
