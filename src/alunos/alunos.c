@@ -47,11 +47,6 @@ void Imprimir_Alunos(Alunos *Var_Alunos, int contador) {
             for(int j = 0; j < 3; j++) {
                 printf("Nota %d: %.f\n", i + 1, Var_Alunos[i].notas[j]);
             }
-            /* printf("\nDeseja voltar ao Menu? |1.SIM | 2.NAO| \n");
-            scanf("%d", &Sair);
-            if(Sair != 1 && Sair != 2) {
-                printf("Digite uma opcao valida! \n");
-            } */
         } 
     }
 }
