@@ -1,6 +1,5 @@
-#include "../alunos/alunos.c"
-#include "../alunos/alunos.h"
 #include "cursos.h"
+#include "../alunos/alunos.c"
 
 #define VAGAS 3
 
@@ -8,7 +7,13 @@ struct cursos {
     char nome[50];
     int codigo;
     int vagas;
-    ListaAlunos *alunos;
+    ListaMatricula *alunos;
+};
+
+struct listamatricula {
+    Alunos aluno;
+    Cursos curso;
+    ListaMatricula *prox;
 };
 
 Cursos *Criar_Cursos(char *nome, int codigo, int vagas) {
@@ -21,7 +26,6 @@ Cursos *Criar_Cursos(char *nome, int codigo, int vagas) {
     strcpy(Var_Cursos->nome, nome);
     Var_Cursos->codigo = codigo;
     Var_Cursos->vagas = vagas;
-
     //printf("\n\nVAGAS: %d\n\n", Var_Cursos->vagas); //valor lixo
 
     Var_Cursos->alunos = NULL;
@@ -43,4 +47,72 @@ void Imprimir_Cursos(Cursos *Var_Cursos, int contador2) {
         }
         printf("==========================\n");
     } 
+}
+
+int CompararCodigo(Cursos *Var_Cursos, int codigo, int contador2) {
+    for(int i = 0; i < contador2; i++) {
+        if(Var_Cursos[i].codigo == codigo) {
+            return 1;
+        }
+    }
+    return 2;
+}
+
+void MatricularAlunoEmCurso(Alunos* aluno, Cursos* curso, ListaMatricula** lista) {
+    // Verifica se o curso tem vagas disponíveis
+    if (curso->vagas > 0) {
+        // Aloca espaço para a matrícula
+        ListaMatricula* matricula = (ListaMatricula*)malloc(sizeof(ListaMatricula));
+        if (matricula == NULL) {
+            printf("Erro ao alocar memória para matrícula!\n");
+            exit(1);
+        }
+
+        // Preenche os dados da matrícula
+        matricula->aluno = *aluno;
+        matricula->curso = *curso;
+        matricula->prox = NULL;
+
+        // Adiciona a matrícula à lista de matrículas do curso
+        if (*lista == NULL) {
+            *lista = matricula;
+        } else {
+            // Percorre a lista de matrículas e insere no final
+            ListaMatricula* temp = *lista;
+            while (temp->prox != NULL) {
+                temp = temp->prox;
+            }
+            temp->prox = matricula;
+        }
+
+        // Decrementa o número de vagas disponíveis no curso
+        curso->vagas--;
+
+        printf("Aluno %s matriculado no curso %s.\n", aluno->nome, curso->nome);
+    } else {
+        printf("Desculpe, o curso %s está lotado.\n", curso->nome);
+    }
+}
+
+
+void ImprimirListaMatriculas(ListaMatricula *listaMatriculas) {
+    ListaMatricula *temp = listaMatriculas;
+
+    printf("=====================\n");
+    printf("Lista de Matrículas:\n");
+    printf("=====================\n");
+
+    while (temp != NULL) {
+        printf("Nome do Aluno: %s\n", temp->aluno.nome);
+        printf("Matrícula do Aluno: %d\n", temp->aluno.numero_matricula);
+        printf("Notas do Aluno:\n");
+        for (int i = 0; i < 3; i++) {
+            printf("Nota %d: %.2f\n", i + 1, temp->aluno.notas[i]);
+        }
+        printf("Curso Matriculado: %s\n", temp->curso.nome);
+        printf("Codigo do Curso: %d\n", temp->curso.codigo);
+        printf("=====================\n");
+
+        temp = temp->prox;
+    }
 }

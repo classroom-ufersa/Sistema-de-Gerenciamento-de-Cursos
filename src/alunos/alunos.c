@@ -2,18 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "alunos.h"
-#include "../cursos/cursos.h"
 
 struct alunos {
     int numero_matricula;
     char nome[50];
     float notas[3];
     Cursos *cursos;
-};
-
-struct listaalunos {
-    Alunos aluno;
-    ListaAlunos *prox;
 };
 
 Alunos *Criar_Alunos(char *nome, int numero_matricula, float notas[3]) {
@@ -33,6 +27,7 @@ Alunos *Criar_Alunos(char *nome, int numero_matricula, float notas[3]) {
     return Var_Alunos;
 } 
 
+
 void Imprimir_Alunos(Alunos *Var_Alunos, int contador) {
     int Sair = 0;
     if(contador == 0) {
@@ -49,44 +44,15 @@ void Imprimir_Alunos(Alunos *Var_Alunos, int contador) {
             }
         } 
     }
-}
+} 
 
-ListaAlunos *CriarAluno(Alunos *Var_Alunos) {
-    ListaAlunos *novo = (ListaAlunos*)malloc(sizeof(ListaAlunos));
-    if (novo == NULL) {
-        printf("Erro ao alocar memória para o aluno!\n");
-        exit(1);
-    }
-    novo->aluno = *Var_Alunos;
-    novo->prox = NULL;
-    return novo;
-}
-
-void AdicionarAluno(ListaAlunos **lista, Alunos *Var_Alunos) {
-    ListaAlunos *novo = CriarAluno(Var_Alunos);
-    novo->prox = *lista;
-    *lista = novo;
-}
-
-void ImprimirAlunos(ListaAlunos *lista) {
-    if (lista == NULL) {
-        printf("\nNenhum aluno cadastrado!\n");
-    } else {
-
-        int i = 1;
-        ListaAlunos *atual = lista;
-
-        while (atual != NULL) {
-            Alunos aluno = atual->aluno;
-            printf("Aluno %d:\n", i);
-            printf("Nome: %s\n", aluno.nome);
-            printf("Matricula: %d\n", aluno.numero_matricula);
-            printf("Notas: %.2f, %.2f, %.2f\n", aluno.notas[0], aluno.notas[1], aluno.notas[2]);
-            printf("\n");
-            atual = atual->prox;
-            i++;
+int CompararMatricula(Alunos *Var_Alunos, int NumeroMatricula, int contador) {
+    for(int i = 0; i < contador; i++) {
+        if(Var_Alunos[i].numero_matricula == NumeroMatricula) {
+            return 1;
         }
     }
+    return 2;
 }
 
 void menu() {
