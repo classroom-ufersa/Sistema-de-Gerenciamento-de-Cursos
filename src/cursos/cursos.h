@@ -31,4 +31,6 @@ void MatricularAlunoEmCurso(Alunos* aluno, Cursos* curso, ListaMatricula** lista
 void ImprimirListaMatriculas(ListaMatricula *lista, Cursos *cursos, int contador);
 
 
+void tratativa(int erro);
+
 #endif //CURSOS_H
