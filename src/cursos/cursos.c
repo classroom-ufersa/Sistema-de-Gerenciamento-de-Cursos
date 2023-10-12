@@ -147,3 +147,16 @@ void ImprimirListaMatriculas(ListaMatricula *lista, Cursos *cursos, int contador
     }
 }
 
+
+void tratativa(int erro){
+    char letra=erro;
+    
+    while(letra!='\n'){
+        
+        letra=getchar();
+
+    }
+    system("cls");
+
+}
+

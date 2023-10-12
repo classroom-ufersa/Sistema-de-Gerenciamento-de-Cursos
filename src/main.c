@@ -40,6 +40,8 @@ int main() {
         menu();
         scanf("%d", &MenuEscolha);
 
+        tratativa(MenuEscolha);
+
         switch(MenuEscolha) {
         case 1:
                 system("cls");
@@ -50,6 +52,7 @@ int main() {
                     int Comparar = 0;
                     printf("| 1.Criar Aluno | 2. Voltar ao Menu | -> ");
                     scanf("%d", &escolha);
+                    tratativa(escolha);
 
                     switch(escolha) {
                         case 1:
