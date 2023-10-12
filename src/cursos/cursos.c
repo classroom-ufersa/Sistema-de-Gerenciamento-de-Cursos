@@ -105,24 +105,45 @@ void MatricularAlunoEmCurso(Alunos* aluno, Cursos* curso, ListaMatricula **lista
     }
 }
 
-void ImprimirListaMatriculas(ListaMatricula *listaMatriculas) {
-    ListaMatricula *temp = listaMatriculas;
+void ImprimirListaMatriculas(ListaMatricula *lista, Cursos *cursos, int contador) {
+    for (int i = 0; i < contador; i++) {
+        Cursos cursoAtual = cursos[i];
+        ListaMatricula *NovaLista = lista;
+        int Matriculados = 0; 
+        int Sair = 0;
 
-    printf("=====================\n");
-    printf("Lista de Matriculas:\n");
-    printf("=====================\n");
-
-    while (temp != NULL) {
-        printf("Nome do Aluno: %s\n", temp->aluno.nome);
-        printf("Matricula do Aluno: %d\n", temp->aluno.numero_matricula);
-        printf("Notas do Aluno:\n");
-        for (int i = 0; i < 3; i++) {
-            printf("Nota %d: %.2f\n", i + 1, temp->aluno.notas[i]);
-        }
-        printf("Curso Matriculado: %s\n", temp->curso.nome);
-        printf("Codigo do Curso: %d\n", temp->curso.codigo);
+        printf("=====================\n");
+        printf("Disciplina: %s\n", cursoAtual.nome);
+        printf("Codigo: %d\n", cursoAtual.codigo);
         printf("=====================\n");
 
-        temp = temp->prox;
+        while (NovaLista != NULL) {
+            if (NovaLista->curso.codigo == cursoAtual.codigo) {
+                printf("Nome do Aluno: %s\n", NovaLista->aluno.nome);
+                printf("Matricula do Aluno: %d\n", NovaLista->aluno.numero_matricula);
+                printf("Notas do Aluno:\n");
+                for (int j = 0; j < 3; j++) {
+                    printf("Nota %d: %.2f\n", j + 1, NovaLista->aluno.notas[j]);
+                }
+                printf("\n");
+                Matriculados++; 
+            }
+            NovaLista = NovaLista->prox;
+        }
+
+        if (Matriculados == 0) {
+            printf("Nao ha alunos matriculados neste curso ainda! \n");
+        }
+
+        printf("=====================\n\n");
+        printf("Digite 2 para sair -> ");
+        scanf("%d", &Sair);
+        if(Sair != 2) {
+            while(Sair != 2) {
+                printf("Digite 2 para sair -> ");
+                scanf("%d", &Sair);
+            }
+        }
     }
 }
+

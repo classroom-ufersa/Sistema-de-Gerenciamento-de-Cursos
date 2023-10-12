@@ -172,7 +172,7 @@ int main() {
                         scanf("%d", &escolha);
                         if(escolha != 2) {
                             while(escolha != 2) {
-                                printf("\nDigite 2 para sair! \n");
+                                printf("\nDigite 2 para sair -> \n");
                                 scanf("%d", &escolha);
                             }
                         }
@@ -251,7 +251,7 @@ int main() {
             case 4:
                 break;
             case 5:
-                ImprimirListaMatriculas(Lista);
+                ImprimirListaMatriculas(Lista, Var_Cursos, contador2);
                 break;
             case 6:
                 break;
