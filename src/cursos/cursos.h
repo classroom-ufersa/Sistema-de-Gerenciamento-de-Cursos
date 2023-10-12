@@ -3,26 +3,32 @@
 
 #include "../alunos/alunos.h"
 
-/*Função para alocar a struct dinâmicamente*/
+/*Mudando o nome da struct*/
 typedef struct listamatricula ListaMatricula;
 
+/*Mudando o nome da struct*/
 typedef struct cursos Cursos;
 
+/*Mudando o nome da union*/
 typedef union aluno_curso AlunoCurso;
 
+/*Mudando o nome da struct*/
 typedef union aluno_matricula AlunoMatricula;
 
 /*Função para criar os cursos*/
 Cursos *Criar_Cursos(char *nome, int codigo, int vagas);
 
+/*Função para imprimir os cursos*/
 void Imprimir_Cursos(Cursos *Var_Cursos, int contador2);
 
+/*Função para comparar os cursos*/
 int CompararCodigo(Cursos *Var_Cursos, int codigo, int contador2);
 
+/*Função para matricular os alunos no curso*/
 void MatricularAlunoEmCurso(Alunos* aluno, Cursos* curso, ListaMatricula** lista);
 
-void ImprimirListaMatriculas(ListaMatricula *listaMatriculas);
-
+/*Função para listar os alunos matriculados*/
+void ImprimirListaMatriculas(ListaMatricula *lista, Cursos *cursos, int contador);
 
 
 #endif //CURSOS_H
