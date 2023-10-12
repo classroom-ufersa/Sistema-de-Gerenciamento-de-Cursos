@@ -21,7 +21,8 @@ int CompararCodigo(Cursos *Var_Cursos, int codigo, int contador2);
 
 void MatricularAlunoEmCurso(Alunos* aluno, Cursos* curso, ListaMatricula** lista);
 
-
 void ImprimirListaMatriculas(ListaMatricula *listaMatriculas);
+
+
 
 #endif //CURSOS_H
