@@ -147,6 +147,31 @@ void ImprimirListaMatriculas(ListaMatricula *lista, Cursos *cursos, int contador
     }
 }
 
+void ExcluirMatricula(ListaMatricula **lista, char *NomeAluno, int CodigoDisciplina) {
+    ListaMatricula *ListaAtual = *lista;
+    ListaMatricula *ListaAnterior = NULL;
+
+    while (ListaAtual != NULL) {
+        if (strcmp(ListaAtual->aluno.nome, NomeAluno) == 0 && ListaAtual->curso.codigo == CodigoDisciplina) {
+            // Checa se o nome do aluno é igual ao nome do aluno digitado pelo usuário
+            if (ListaAnterior == NULL) {
+                // lista receba a a proxima lista caso lista anterior receba nada (null)
+                *lista = ListaAtual->prox;
+            } else {
+                ListaAnterior->prox = ListaAtual->prox;
+            }
+            free(ListaAtual); // Exclui a matricula
+            printf("Matricula excluida com sucesso! \n");
+            return; // Sai no momento que a matricula for excluida
+        }
+
+        ListaAnterior = ListaAtual;
+        ListaAtual = ListaAtual->prox;
+    }
+
+    printf("A matricula nao foi encontrada! \n");
+}
+
 
 void tratativa(int erro){
     char letra=erro;
