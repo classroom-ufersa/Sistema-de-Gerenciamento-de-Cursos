@@ -29,4 +29,6 @@ void ExcluirMatricula(ListaMatricula **lista, char *NomeAluno, int CodigoDiscipl
 
 void tratativa(int erro);
 
+void CorrecaoNome(char *nomeF);
+
 #endif //CURSOS_H

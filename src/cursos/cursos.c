@@ -185,3 +185,20 @@ void tratativa(int erro){
 
 }
 
+void CorrecaoNome(char *nomeF){
+	int Inicial=1,i;
+	
+	for(i=0;i<strlen(nomeF);i++){
+        if(isspace(nomeF[i])){
+            Inicial=1;
+        }else if(Inicial){
+		    nomeF[i]=toupper(nomeF[i]);
+		    Inicial=0;
+		}else {
+		    nomeF[i]=tolower(nomeF[i]);
+		}
+		
+	}
+
+}
+
