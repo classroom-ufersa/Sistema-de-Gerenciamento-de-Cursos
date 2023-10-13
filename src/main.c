@@ -1,19 +1,7 @@
 /* #include "./alunos/alunos.c" */
 #include "./cursos/cursos.c"
 
-/* union aluno_curso {
-    char NomeCurso[50];
-    int Codigo;
-};
-
-union aluno_matricula {
-    char NomeAluno[50];
-    int Matricula;
-}; */
-
 int main() {
-    /* AlunoCurso *Alunocurso = (AlunoCurso*)malloc(sizeof(AlunoCurso));
-    AlunoMatricula *Alunomatricula = (AlunoMatricula*)malloc(sizeof(AlunoMatricula)); */
     ListaMatricula *Lista = NULL;
     Alunos *Var_Alunos = (Alunos*)malloc(sizeof(Alunos));
     Cursos *Var_Cursos = (Cursos*)malloc(sizeof(Cursos)); 
@@ -24,7 +12,7 @@ int main() {
     int contador = 0, SairCase = 0;
     int contador2 = 0, contador3, Vagas2 = 2;  //Vagas2 são as vagas de cada curso (que são 3 contando do 0)
 
-    int escolha = 0, escolha2 = 0;
+    int escolha = 0;
 
     char Nomealuno[50], Nomecurso[50];
     int matricula, codigo;
@@ -36,24 +24,21 @@ int main() {
     int MenuEscolha;
 
     do{
-        //system("cls");
+        system("cls");
         menu();
         scanf("%d", &MenuEscolha);
-
         tratativa(MenuEscolha);
 
         switch(MenuEscolha) {
         case 1:
+            system("cls");
+            escolha = 0;
+            while(escolha != 2) {
                 system("cls");
-                //SairCase = 0;
-                escolha = 0;
-                while(escolha != 2) {
-                    system("cls");
-                    int Comparar = 0;
-                    printf("| 1.Criar Aluno | 2. Voltar ao Menu | -> ");
-                    scanf("%d", &escolha);
-                    tratativa(escolha);
-
+                int Comparar = 0;
+                printf("| 1.Criar Aluno | 2. Voltar ao Menu | -> ");
+                scanf("%d", &escolha);
+                tratativa(escolha);
                     switch(escolha) {
                         case 1:
                             contador++;
@@ -252,6 +237,36 @@ int main() {
                 break;
 
             case 4:
+                system("cls");
+                escolha = 0;
+                char NomeAluno[30];
+                int CodigoDisciplina;
+                while(escolha != 2) {
+                    printf("| 1.Excluir Matricula | 2. Voltar ao Menu | -> ");
+                    scanf("%d", &escolha);
+
+                    switch(escolha) {
+                        case 1:
+                            system("cls");
+                            if(Lista == NULL) {
+                                printf("Nao ha nenhuma matricula! \n");
+                                break;
+                            } else {
+                                ImprimirListaMatriculas(Lista, Var_Cursos, contador2);
+                            }
+                            printf("\nInforme o Nome do Aluno: -> ");
+                            scanf(" %[^\n]", NomeAluno);
+                            getchar();
+                            printf("Informe o Codigo do Curso: -> ");
+                            scanf("%d", &CodigoDisciplina);
+                            ExcluirMatricula(&Lista, NomeAluno, CodigoDisciplina);
+                        break;
+                        case 2:
+                            break;
+                        default:
+                            printf("Digite uma opcao valida! \n");
+                    }
+                }
                 break;
             case 5:
                 ImprimirListaMatriculas(Lista, Var_Cursos, contador2);
