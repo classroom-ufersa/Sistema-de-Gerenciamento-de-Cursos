@@ -45,6 +45,7 @@ int main() {
                             Vagas++;
                             printf("Informe o nome do aluno(a) %i: ", contador);
                             scanf(" %[^\n]", NomeAluno);
+                            CorrecaoNome(NomeAluno);
                             getchar();
                             printf("Infome o numero de matricula do aluno(a) %i: ", contador);
                             scanf("%d", &NumeroMatricula);
@@ -109,6 +110,7 @@ int main() {
                             contador2++;
                             printf("\nInfome a disciplina: ");
                             scanf(" %[^\n]", NomeCurso);
+                            CorrecaoNome(NomeCurso);
                             getchar();
                             printf("Informe o codigo do curso: ");
                             scanf("%d", &CodigoCurso);
