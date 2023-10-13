@@ -270,6 +270,12 @@ int main() {
                 break;
             case 5:
                 ImprimirListaMatriculas(Lista, Var_Cursos, contador2);
+                while(SairCase != 2){
+                    printf("Digite 2 para sair -> ");
+                    scanf("%d", &SairCase);
+                    tratativa(SairCase);
+                   
+                    }
                 break;
             case 6:
                 break;
