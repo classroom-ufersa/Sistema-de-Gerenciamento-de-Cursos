@@ -27,8 +27,13 @@ void ImprimirListaMatriculas(ListaMatricula *lista, Cursos *cursos, int contador
 /*Função para excluir matricula*/
 void ExcluirMatricula(ListaMatricula **lista, char *NomeAluno, int CodigoDisciplina);
 
+/*Função para buscar um curso*/
+void BuscarCurso(Cursos *cursos, char *NomeCurso, int contador);
+
+/*Função para impedir loop de incompatibilidade de variáveis*/
 void tratativa(int erro);
 
+/*Função para corrigir a formatação do nome*/
 void CorrecaoNome(char *nomeF);
 
 #endif //CURSOS_H

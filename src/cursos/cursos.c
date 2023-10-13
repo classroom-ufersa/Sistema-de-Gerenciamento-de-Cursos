@@ -172,6 +172,20 @@ void ExcluirMatricula(ListaMatricula **lista, char *NomeAluno, int CodigoDiscipl
     printf("A matricula nao foi encontrada! \n");
 }
 
+void BuscarCurso(Cursos *cursos, char *NomeCurso, int contador) {
+    for(int i = 0; i < contador; i++) {
+        if(strcmp(NomeCurso, cursos->nome) == 0) {
+            printf("\nCurso: %s\n", cursos[i].nome);
+            printf("Codigo: %d\n", cursos[i].codigo);
+            printf("\n");
+        } 
+    }
+    if(!strcmp(NomeCurso, cursos->nome) == 0) {
+        printf("\nCurso nao encontrado! \n\n");
+    }
+
+}
+
 
 void tratativa(int erro){
     char letra=erro;

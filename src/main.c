@@ -271,6 +271,9 @@ int main() {
                 }
                 break;
             case 5:
+                if(contador2 == 0) {
+                    printf("\nNao ha nenhuma matricula! \n\n");
+                }
                 ImprimirListaMatriculas(Lista, Var_Cursos, contador2);
                 while(SairCase != 2){
                     printf("Digite 2 para sair -> ");
@@ -280,6 +283,29 @@ int main() {
                     }
                 break;
             case 6:
+                system("cls");
+                escolha = 0;
+                char NomeCurso[30];
+                while(escolha != 2) {
+                    printf("| 1.Buscar Curso | 2. Voltar ao Menu | -> ");
+                    scanf("%d", &escolha);
+                    tratativa(escolha);
+
+                    switch(escolha) {
+                        case 1:
+                            system("cls");
+                            printf("Informe o nome do curso: -> ");
+                            scanf(" %[^\n]", NomeCurso);
+                            getchar();
+                            BuscarCurso(Var_Cursos, NomeCurso, contador2);
+                            break;
+                        case 2:
+                            break;
+                        default:
+                            system("cls");
+                            printf("Digite uma opcao valida! \n\n");
+                    }
+                }
                 break;
             case 7:
                 break;
