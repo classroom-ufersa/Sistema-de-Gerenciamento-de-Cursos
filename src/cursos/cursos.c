@@ -35,15 +35,15 @@ Cursos *Criar_Cursos(char *nome, int codigo, int vagas) {
 
 void Imprimir_Cursos(Cursos *Var_Cursos, int contador2) {
     printf("\n==========================");
-    printf("\nDISCIPLINAS DISPONIVEIS: \n");
+    printf("\nCURSOS DISPONIVEIS: \n");
     if(contador2 == 0) {
         printf("Nao ha nada cadastrado! \n");
         printf("========================\n");
     } else {
         for(int i = 0; i < contador2; i++) {
             printf("\n");
-            printf("Nome da Disciplina %d: %s\n", i + 1, Var_Cursos[i].nome);
-            printf("Codigo da Disciplina %d: %d\n", i + 1, Var_Cursos[i].codigo);
+            printf("Nome do Curso %d: %s\n", i + 1, Var_Cursos[i].nome);
+            printf("Codigo do Curso %d: %d\n", i + 1, Var_Cursos[i].codigo);
         }
         printf("==========================\n");
     } 
@@ -73,7 +73,7 @@ void MatricularAlunoEmCurso(Alunos* aluno, Cursos* curso, ListaMatricula **lista
         while (NovaLista != NULL) {
             if (NovaLista->aluno.numero_matricula == aluno->numero_matricula && NovaLista->curso.codigo == curso->codigo) {
                 printf("\n=====================================================\n");
-                printf("O aluno ja esta matriculado nesta disciplina.\n");
+                printf("O aluno ja esta matriculado neste curso.\n");
                 printf("=====================================================\n");
                 return;
             }
@@ -116,7 +116,7 @@ void ImprimirListaMatriculas(ListaMatricula *lista, Cursos *cursos, int contador
         int Sair = 0;
 
         printf("=====================\n");
-        printf("Disciplina: %s\n", cursoAtual.nome);
+        printf("Curso: %s\n", cursoAtual.nome);
         printf("Codigo: %d\n", cursoAtual.codigo);
         printf("=====================\n");
 
@@ -142,7 +142,7 @@ void ImprimirListaMatriculas(ListaMatricula *lista, Cursos *cursos, int contador
     }
 }
 
-void ExcluirMatricula(ListaMatricula **lista, char *NomeAluno, int CodigoDisciplina) {
+void ExcluirMatricula(ListaMatricula **lista, char *NomeAluno, Cursos *curso, int CodigoDisciplina) {
     ListaMatricula *ListaAtual = *lista;
     ListaMatricula *ListaAnterior = NULL;
 
@@ -156,7 +156,8 @@ void ExcluirMatricula(ListaMatricula **lista, char *NomeAluno, int CodigoDiscipl
                 ListaAnterior->prox = ListaAtual->prox;
             }
             free(ListaAtual); // Exclui a matricula
-            printf("Matricula excluida com sucesso! \n");
+            printf("\nMatricula excluida com sucesso! \n");
+            curso->vagas++; //recoloca a vaga que era ocupada
             return; // Sai no momento que a matricula for excluida
             //break;
         }
@@ -182,13 +183,13 @@ void BuscarCurso(Cursos *cursos, char *NomeCurso, int contador) {
 }
 
 void EditarNomeAluno(ListaMatricula **lista, char* nomeAlunoEditar, char* novoNomeAluno, Alunos* aluno, int contador) {
-    ListaMatricula *temp = *lista;
+    ListaMatricula *ListaAtual = *lista;
     int matriculaEncontrada = 0;
 
-    while (temp != NULL) {
-        if (strcmp(temp->aluno.nome, nomeAlunoEditar) == 0) {
+    while (ListaAtual != NULL) {
+        if (strcmp(ListaAtual->aluno.nome, nomeAlunoEditar) == 0) {
             // Encontrou a matrícula com o aluno a ser editado
-            strcpy(temp->aluno.nome, novoNomeAluno);
+            strcpy(ListaAtual->aluno.nome, novoNomeAluno);
             
             for(int i = 0; i < contador; i++) {
                 if(strcmp(aluno[i].nome, nomeAlunoEditar) == 0) {
@@ -199,7 +200,7 @@ void EditarNomeAluno(ListaMatricula **lista, char* nomeAlunoEditar, char* novoNo
             matriculaEncontrada = 1;
             break;
         }
-        temp = temp->prox;
+        ListaAtual = ListaAtual->prox;
     }
 
     if (matriculaEncontrada) {
@@ -210,12 +211,12 @@ void EditarNomeAluno(ListaMatricula **lista, char* nomeAlunoEditar, char* novoNo
 }
 
 void EditarMatriculaAluno(ListaMatricula **lista, int MatriculaAlunoEditar, int NovaMatriculaAluno, Alunos* aluno, int contador) {
-    ListaMatricula *temp = *lista;
+    ListaMatricula *ListaAtual = *lista;
     int matriculaEncontrada = 0;
 
-    while (temp != NULL) {
-        if(temp->aluno.numero_matricula == MatriculaAlunoEditar) {
-            temp->aluno.numero_matricula = NovaMatriculaAluno;
+    while (ListaAtual != NULL) {
+        if(ListaAtual->aluno.numero_matricula == MatriculaAlunoEditar) {
+            ListaAtual->aluno.numero_matricula = NovaMatriculaAluno;
         }
 
         for(int i = 0; i < contador; i++) {
@@ -227,7 +228,7 @@ void EditarMatriculaAluno(ListaMatricula **lista, int MatriculaAlunoEditar, int 
         matriculaEncontrada = 1;
         break;
 
-        temp = temp->prox;
+        ListaAtual = ListaAtual->prox;
     }
 
     if (matriculaEncontrada) {
@@ -238,14 +239,14 @@ void EditarMatriculaAluno(ListaMatricula **lista, int MatriculaAlunoEditar, int 
 } 
 
 void EditarNotaAluno(ListaMatricula **lista, float NotaEditar, float NovaNota, Alunos* aluno, int contador) {
-    ListaMatricula *temp = *lista;
+    ListaMatricula *ListaAtual = *lista;
     int matriculaEncontrada = 0;
     int i;
 
-    while (temp != NULL) {
+    while (ListaAtual != NULL) {
         for(int i = 0; i < 3; i++) {
-            if (temp->aluno.notas[i] == NotaEditar) {
-                temp->aluno.notas[i] = NovaNota;
+            if (ListaAtual->aluno.notas[i] == NotaEditar) {
+                ListaAtual->aluno.notas[i] = NovaNota;
                 matriculaEncontrada = 1;
             }
         }
@@ -262,7 +263,7 @@ void EditarNotaAluno(ListaMatricula **lista, float NotaEditar, float NovaNota, A
         matriculaEncontrada = 1;
         break;
 
-        temp = temp->prox;
+        ListaAtual = ListaAtual->prox;
         i++;
     }
 
@@ -271,6 +272,20 @@ void EditarNotaAluno(ListaMatricula **lista, float NotaEditar, float NovaNota, A
     } else {
         printf("\nMatricula nao encontrada na lista de matriculas.\n");
     }
+}
+
+void VagasDisponiveis(Cursos *curso, int contador) {
+    if(contador == 0) {
+        printf("Nao ha nenhum curso cadastrado! \n");
+    } else {
+        printf("\n==========================\n");
+        for(int i = 0; i < contador; i++) {
+            printf("\nCurso: %s\n", curso[i].nome);
+            printf("Codigo: %d\n", curso[i].codigo);
+            printf("Vagas: %d\n", curso[i].vagas);
+        }
+        printf("\n==========================\n");
+    }  
 }
 
 
