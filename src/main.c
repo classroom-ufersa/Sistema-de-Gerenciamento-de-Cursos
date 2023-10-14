@@ -10,7 +10,7 @@ int main() {
     int NumeroMatricula;
     float notas[3];
     int contador = 0, SairCase = 0;
-    int contador2 = 0, contador3, Vagas2 = 3;  //Vagas2 são as vagas de cada curso (que são 3 contando do 0)
+    int contador2 = 0, contador3, Vagas = 3;  //Vagas são as vagas de cada curso 
 
     int escolha = 0;
 
@@ -19,7 +19,6 @@ int main() {
 
     char NomeCurso[50];
     int CodigoCurso;
-    int Vagas = 0; //limite de vagas no curso criado
 
     int MenuEscolha;
 
@@ -42,7 +41,6 @@ int main() {
                 switch(escolha) {
                     case 1:
                         contador++;
-                        //Vagas++;
                         printf("Informe o nome do aluno(a) %i: -> ", contador);
                         scanf(" %[^\n]", NomeAluno);
                         getchar();
@@ -86,7 +84,7 @@ int main() {
                 while(escolha != 2) { 
                     //system("cls");
                     int Comparar = 0;
-                    printf("| 1.Criar curso | 2.Voltar ao Menu | -> ");
+                    printf("| 1.Criar Curso | 2.Voltar ao Menu | -> ");
                     scanf("%d", &escolha);
                     
                     switch(escolha) {
@@ -100,7 +98,7 @@ int main() {
                             Comparar = CompararCodigo(Var_Cursos, CodigoCurso, contador2);
                             system("cls");
                             if(Comparar == 2) {
-                                printf("Disciplina criada! \n\n");
+                                printf("Curso criado! \n\n");
                             }
                             while(Comparar == 1) {
                                 system("cls");
@@ -112,13 +110,12 @@ int main() {
                                     Comparar = CompararCodigo(Var_Cursos, CodigoCurso, contador2);
                                 } 
                                 if(Comparar == 2) {
-                                    printf("Disciplina criada! \n");
+                                    printf("Curso criado! \n");
                                 }
                             }
-                            Cursos *VarCursos = Criar_Cursos(NomeCurso, CodigoCurso, Vagas2);
+                            Cursos *VarCursos = Criar_Cursos(NomeCurso, CodigoCurso, Vagas);
 
                             if(escolha == 1) {
-                                Vagas2++;
                                 Var_Cursos = (Cursos*)realloc(Var_Cursos, (contador2 + 2) * sizeof(Cursos));
                                 if(Var_Cursos == NULL) {
                                     printf("Realocacao de Var_Cursos falhou! \n");
@@ -219,6 +216,7 @@ int main() {
                 char NomeAluno[30];
                 int CodigoDisciplina;
                 while(escolha != 2) {
+                    ImprimirListaMatriculas(Lista, Var_Cursos, contador2);
                     printf("| 1.Excluir Matricula | 2. Voltar ao Menu | -> ");
                     scanf("%d", &escolha);
 
@@ -236,7 +234,7 @@ int main() {
                             getchar();
                             printf("Informe o Codigo do Curso: -> ");
                             scanf("%d", &CodigoDisciplina);
-                            ExcluirMatricula(&Lista, NomeAluno, CodigoDisciplina);
+                            ExcluirMatricula(&Lista, NomeAluno, Var_Cursos, CodigoDisciplina);
                         break;
                         case 2:
                             break;
@@ -312,6 +310,10 @@ int main() {
 
                             switch(escolha2) {
                                 case 1:
+                                    if(Lista == NULL) {
+                                        printf("Nao ha nenhum aluno cadastrado! \n");
+                                        break;
+                                    }
                                     ImprimirListaMatriculas(Lista, Var_Cursos, contador2);
                                     printf("\nInforme o nome do Aluno que deseja editar: -> ");
                                     scanf(" %[^\n]", NomeAlunoEditar);
@@ -321,6 +323,10 @@ int main() {
                                     EditarNomeAluno(&Lista, NomeAlunoEditar, NovoNomeAluno, Var_Alunos, contador);
                                     break;
                                 case 2:
+                                    if(Lista == NULL) {
+                                        printf("Nao ha nenhum aluno cadastrado! \n");
+                                        break;
+                                    }
                                     ImprimirListaMatriculas(Lista, Var_Cursos, contador2);
                                     printf("Informe a matricula do Aluno que deseja editar: -> ");
                                     scanf("%d", &MatriculaAlunoEditar);
@@ -329,6 +335,10 @@ int main() {
                                     EditarMatriculaAluno(&Lista, MatriculaAlunoEditar, NovaMatriculaAluno, Var_Alunos, contador);
                                     break;
                                 case 3:
+                                    if(Lista == NULL) {
+                                        printf("Nao ha nenhum aluno cadastrado! \n");
+                                        break;
+                                    }
                                     ImprimirListaMatriculas(Lista, Var_Cursos, contador2);
                                     printf("Informe a Nota que voce deseja modificar: -> ");
                                     scanf("%f", &NotaEditar);
@@ -344,6 +354,12 @@ int main() {
                 }
                 break;
             case 8: 
+                SairCase = 0;
+                VagasDisponiveis(Var_Cursos, contador2);
+                while(SairCase != 2) {
+                    printf("Digite 2 para sair! \n");
+                    scanf("%d", &SairCase);
+                }
                 break;
             case 9:
                 break;
