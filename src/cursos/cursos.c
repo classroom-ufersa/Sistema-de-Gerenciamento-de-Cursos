@@ -181,7 +181,7 @@ void BuscarCurso(Cursos *cursos, char *NomeCurso, int contador) {
     }
 }
 
-void EditarMatriculaAluno(ListaMatricula **lista, char* nomeAlunoEditar, char* novoNomeAluno, Alunos* aluno, int contador) {
+void EditarNomeAluno(ListaMatricula **lista, char* nomeAlunoEditar, char* novoNomeAluno, Alunos* aluno, int contador) {
     ListaMatricula *temp = *lista;
     int matriculaEncontrada = 0;
 
@@ -208,3 +208,69 @@ void EditarMatriculaAluno(ListaMatricula **lista, char* nomeAlunoEditar, char* n
         printf("\nAluno nao encontrado na lista de matriculas.\n");
     }
 }
+
+void EditarMatriculaAluno(ListaMatricula **lista, int MatriculaAlunoEditar, int NovaMatriculaAluno, Alunos* aluno, int contador) {
+    ListaMatricula *temp = *lista;
+    int matriculaEncontrada = 0;
+
+    while (temp != NULL) {
+        if(temp->aluno.numero_matricula == MatriculaAlunoEditar) {
+            temp->aluno.numero_matricula = NovaMatriculaAluno;
+        }
+
+        for(int i = 0; i < contador; i++) {
+            if(aluno[i].numero_matricula == MatriculaAlunoEditar) {
+                aluno[i].numero_matricula = NovaMatriculaAluno;
+            }
+        }
+
+        matriculaEncontrada = 1;
+        break;
+
+        temp = temp->prox;
+    }
+
+    if (matriculaEncontrada) {
+        printf("Matricula do aluno atualizado com sucesso!\n");
+    } else {
+        printf("\nMatricula nao encontrada na lista de matriculas.\n");
+    }
+} 
+
+void EditarNotaAluno(ListaMatricula **lista, float NotaEditar, float NovaNota, Alunos* aluno, int contador) {
+    ListaMatricula *temp = *lista;
+    int matriculaEncontrada = 0;
+    int i;
+
+    while (temp != NULL) {
+        for(int i = 0; i < 3; i++) {
+            if (temp->aluno.notas[i] == NotaEditar) {
+                temp->aluno.notas[i] = NovaNota;
+                matriculaEncontrada = 1;
+            }
+        }
+
+        for(int i = 0; i < contador; i++) {
+            for(int j = 0; j < 3; j++) {
+                if(aluno[i].notas[j] == NotaEditar) {
+                aluno[i].notas[j] = NovaNota;
+                }
+            }
+            
+        }
+
+        matriculaEncontrada = 1;
+        break;
+
+        temp = temp->prox;
+        i++;
+    }
+
+    if (matriculaEncontrada) {
+        printf("Matricula do aluno atualizado com sucesso!\n");
+    } else {
+        printf("\nMatricula nao encontrada na lista de matriculas.\n");
+    }
+}
+
+

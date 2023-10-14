@@ -287,26 +287,28 @@ int main() {
                 system("cls");
                 escolha = 0;
                 int escolha2 = 0;
-                char NomeAlunoEditar[30];
-                char NovoNomeAluno[30];
+                SairCase = 0;
+                char NomeAlunoEditar[30], NovoNomeAluno[30];
+                int MatriculaAlunoEditar, NovaMatriculaAluno;
+                float NotaEditar, NovaNota;
                 while(escolha != 2) {
                     printf("\n| 1.Editar matricula | 2.Voltar ao Menu | -> ");
                     scanf("%d", &escolha);
+                    if(escolha == 2) {
+                        break;
+                    } 
 
                     switch(escolha) {
                         case 1:
                             system("cls");
-                            printf("======================\n");
-                            printf("| 1.Nome do Aluno | \n");
-                            printf("| 2.Matricula do Aluno | \n");
-                            printf("| 3.Notas do Aluno | \n");
-                            printf("| 4.Voltar ao Menu | \n");
-                            printf("======================\n");
+                            printf("===========================\n");
+                            printf("|   1.Nome do Aluno      | \n");
+                            printf("|   2.Matricula do Aluno | \n");
+                            printf("|   3.Notas do Aluno     | \n");
+                            printf("|   4.Voltar ao Menu     | \n");
+                            printf("===========================\n");
                             printf("-> ");
                             scanf("%d", &escolha2);
-                            if(escolha2 == 4) {
-                                escolha = 2;
-                            }
 
                             switch(escolha2) {
                                 case 1:
@@ -316,8 +318,27 @@ int main() {
                                     getchar();
                                     printf("\nInforme o novo nome: -> ");
                                     scanf(" %[^\n]", NovoNomeAluno);
-                                    EditarMatriculaAluno(&Lista, NomeAlunoEditar, NovoNomeAluno, Var_Alunos, contador);
+                                    EditarNomeAluno(&Lista, NomeAlunoEditar, NovoNomeAluno, Var_Alunos, contador);
                                     break;
+                                case 2:
+                                    ImprimirListaMatriculas(Lista, Var_Cursos, contador2);
+                                    printf("Informe a matricula do Aluno que deseja editar: -> ");
+                                    scanf("%d", &MatriculaAlunoEditar);
+                                    printf("Informe a matricula atual do aluno: -> ");
+                                    scanf("%d", &NovaMatriculaAluno);
+                                    EditarMatriculaAluno(&Lista, MatriculaAlunoEditar, NovaMatriculaAluno, Var_Alunos, contador);
+                                    break;
+                                case 3:
+                                    ImprimirListaMatriculas(Lista, Var_Cursos, contador2);
+                                    printf("Informe a Nota que voce deseja modificar: -> ");
+                                    scanf("%f", &NotaEditar);
+                                    printf("Informe a nova Nota: -> ");
+                                    scanf("%f", &NovaNota);
+                                    EditarNotaAluno(&Lista, NotaEditar, NovaNota, Var_Alunos, contador);
+                                    break;
+                                case 4:
+                                    escolha = 2;
+                                    break; 
                             }
                     }
                 }
