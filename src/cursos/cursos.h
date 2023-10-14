@@ -23,12 +23,14 @@ void ExcluirMatricula(ListaMatricula **lista, char *NomeAluno, Cursos *curso, in
 
 void BuscarCurso(Cursos *cursos, char *NomeCurso, int contador);
 
-void EditarNomeAluno(ListaMatricula **lista, char* nomeAlunoEditar, char* novoNomeAluno, Alunos *aluno, int contador);
+void EditarNomeAluno(ListaMatricula **lista, int MatriculaAlunoEditar, char *NovoNomeAluno, Alunos *aluno, int contador);
 
 void EditarMatriculaAluno(ListaMatricula **lista, int MatriculaAlunoEditar, int NovaMatriculaAluno, Alunos* aluno, int contador);
 
-void EditarNotaAluno(ListaMatricula **lista, float NotaEditar, float NovaNota, Alunos* aluno, int contador);
+void EditarNotaAluno(ListaMatricula **lista, float NotaEditar, float NovaNota, int MatriculaAlunoEditar, Alunos* aluno, int contador);
 
 void VagasDisponiveis(Cursos *curso, int contador);
+
+void QntAlunosCurso(ListaMatricula **lista, int CodigoCurso);
 
 #endif //CURSOS_H
