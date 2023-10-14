@@ -182,18 +182,18 @@ void BuscarCurso(Cursos *cursos, char *NomeCurso, int contador) {
     }
 }
 
-void EditarNomeAluno(ListaMatricula **lista, char* nomeAlunoEditar, char* novoNomeAluno, Alunos* aluno, int contador) {
+void EditarNomeAluno(ListaMatricula **lista, int MatriculaAlunoEditar, char *NovoNomeAluno, Alunos *aluno, int contador) {
     ListaMatricula *ListaAtual = *lista;
     int matriculaEncontrada = 0;
 
     while (ListaAtual != NULL) {
-        if (strcmp(ListaAtual->aluno.nome, nomeAlunoEditar) == 0) {
+        if (ListaAtual->aluno.numero_matricula == MatriculaAlunoEditar) {
             // Encontrou a matrícula com o aluno a ser editado
-            strcpy(ListaAtual->aluno.nome, novoNomeAluno);
+            strcpy(ListaAtual->aluno.nome, NovoNomeAluno);
             
             for(int i = 0; i < contador; i++) {
-                if(strcmp(aluno[i].nome, nomeAlunoEditar) == 0) {
-                    strcpy(aluno[i].nome, novoNomeAluno);
+                if(aluno[i].numero_matricula == MatriculaAlunoEditar) {
+                    strcpy(aluno[i].nome, NovoNomeAluno);
                 }
             }
 
@@ -214,7 +214,17 @@ void EditarMatriculaAluno(ListaMatricula **lista, int MatriculaAlunoEditar, int 
     ListaMatricula *ListaAtual = *lista;
     int matriculaEncontrada = 0;
 
+    //MatriculaAlunoEditar é uma variável que tô reutilizando pra fazer a comparação
+
+    for(int i = 0; i < contador; i++) {
+            if(aluno[i].numero_matricula == NovaMatriculaAluno) {
+                printf("Matricula ja existente! \n");
+                return;
+            }
+        }
+
     while (ListaAtual != NULL) {
+
         if(ListaAtual->aluno.numero_matricula == MatriculaAlunoEditar) {
             ListaAtual->aluno.numero_matricula = NovaMatriculaAluno;
         }
@@ -238,16 +248,20 @@ void EditarMatriculaAluno(ListaMatricula **lista, int MatriculaAlunoEditar, int 
     }
 } 
 
-void EditarNotaAluno(ListaMatricula **lista, float NotaEditar, float NovaNota, Alunos* aluno, int contador) {
+void EditarNotaAluno(ListaMatricula **lista, float NotaEditar, float NovaNota, int MatriculaAlunoEditar, Alunos* aluno, int contador) {
     ListaMatricula *ListaAtual = *lista;
     int matriculaEncontrada = 0;
     int i;
 
+    //MatriculaAlunoEditar é uma variável que tô reutilizando pra fazer a comparação
+
     while (ListaAtual != NULL) {
-        for(int i = 0; i < 3; i++) {
-            if (ListaAtual->aluno.notas[i] == NotaEditar) {
-                ListaAtual->aluno.notas[i] = NovaNota;
-                matriculaEncontrada = 1;
+        if(ListaAtual->aluno.numero_matricula == MatriculaAlunoEditar) {  //busca qual é o aluno
+             for(int i = 0; i < 3; i++) {
+                if (ListaAtual->aluno.notas[i] == NotaEditar) {
+                    ListaAtual->aluno.notas[i] = NovaNota;
+                    matriculaEncontrada = 1;
+                }
             }
         }
 
@@ -256,12 +270,11 @@ void EditarNotaAluno(ListaMatricula **lista, float NotaEditar, float NovaNota, A
                 if(aluno[i].notas[j] == NotaEditar) {
                 aluno[i].notas[j] = NovaNota;
                 }
-            }
-            
+            }   
         }
 
-        matriculaEncontrada = 1;
-        break;
+       // matriculaEncontrada = 1;
+        //break;
 
         ListaAtual = ListaAtual->prox;
         i++;
@@ -288,4 +301,20 @@ void VagasDisponiveis(Cursos *curso, int contador) {
     }  
 }
 
+void QntAlunosCurso(ListaMatricula **lista, int CodigoCurso) {
+    ListaMatricula *ListaAtual = *lista;
+    int QntAlunos = 0;
 
+    while (ListaAtual != NULL) {
+        if (ListaAtual->curso.codigo == CodigoCurso) {
+            QntAlunos++;
+        }
+        ListaAtual = ListaAtual->prox;
+    }
+
+    if (QntAlunos > 0) {
+        printf("O curso possui %d aluno(s) matriculado(s) \n", QntAlunos);
+    } else {
+        printf("O curso nao possui alunos matriculados \n");
+    }
+}

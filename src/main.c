@@ -292,9 +292,9 @@ int main() {
                 while(escolha != 2) {
                     printf("\n| 1.Editar matricula | 2.Voltar ao Menu | -> ");
                     scanf("%d", &escolha);
-                    if(escolha == 2) {
+                    /* if(escolha == 2) {
                         break;
-                    } 
+                    }  */
 
                     switch(escolha) {
                         case 1:
@@ -315,12 +315,14 @@ int main() {
                                         break;
                                     }
                                     ImprimirListaMatriculas(Lista, Var_Cursos, contador2);
-                                    printf("\nInforme o nome do Aluno que deseja editar: -> ");
-                                    scanf(" %[^\n]", NomeAlunoEditar);
+                                    printf("Informe a matricula do aluno que deseja editar: -> ");
+                                    scanf("%d", &MatriculaAlunoEditar);
+                                    /* printf("\nInforme o nome do Aluno que deseja editar: -> ");
+                                    scanf(" %[^\n]", NomeAlunoEditar); */
                                     getchar();
                                     printf("\nInforme o novo nome: -> ");
                                     scanf(" %[^\n]", NovoNomeAluno);
-                                    EditarNomeAluno(&Lista, NomeAlunoEditar, NovoNomeAluno, Var_Alunos, contador);
+                                    EditarNomeAluno(&Lista, MatriculaAlunoEditar, NovoNomeAluno, Var_Alunos, contador);
                                     break;
                                 case 2:
                                     if(Lista == NULL) {
@@ -340,16 +342,24 @@ int main() {
                                         break;
                                     }
                                     ImprimirListaMatriculas(Lista, Var_Cursos, contador2);
+                                    printf("Informe a matricula do aluno: -> ");
+                                    scanf("%d", &MatriculaAlunoEditar);
                                     printf("Informe a Nota que voce deseja modificar: -> ");
                                     scanf("%f", &NotaEditar);
                                     printf("Informe a nova Nota: -> ");
                                     scanf("%f", &NovaNota);
-                                    EditarNotaAluno(&Lista, NotaEditar, NovaNota, Var_Alunos, contador);
+                                    EditarNotaAluno(&Lista, NotaEditar, NovaNota, MatriculaAlunoEditar, Var_Alunos, contador);
                                     break;
                                 case 4:
                                     escolha = 2;
-                                    break; 
+                                    break;
+                                default:
+                                    printf("Digite uma opcao valida! \n"); 
                             }
+                        case 2:
+                            break;
+                        default:
+                            printf("Digite uma opcao valida! \n");
                     }
                 }
                 break;
@@ -362,6 +372,29 @@ int main() {
                 }
                 break;
             case 9:
+                escolha = 0;
+                int CodigoCurso;
+                while(escolha != 2) {
+                    printf("\n| 1.Consultar Quantitativo de Alunos no Curso | 2.Voltar ao Menu | -> ");
+                    scanf("%d", &escolha);
+
+                    switch(escolha) {
+                        case 1:
+                            if(Lista == NULL) {
+                                printf("Nao ha nenhum aluno cadastrado! \n");
+                                break;
+                            }
+                            Imprimir_Cursos(Var_Cursos, contador2);
+                            printf("\nInforme o codigo do curso: ");
+                            scanf("%d", &CodigoCurso);
+                            QntAlunosCurso(&Lista, CodigoCurso);
+                            break;
+                        case 2:
+                            break;
+                        default:
+                            printf("Digite uma opcao valida! \n");
+                    }
+                }
                 break;
             case 10:
                 break;
