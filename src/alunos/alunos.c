@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 #include "alunos.h"
 
 struct alunos {
@@ -27,7 +26,6 @@ Alunos *Criar_Alunos(char *nome, int numero_matricula, float notas[3]) {
 
     return Var_Alunos;
 } 
-
 
 void Imprimir_Alunos(Alunos *Var_Alunos, int contador) {
     int Sair = 0;
