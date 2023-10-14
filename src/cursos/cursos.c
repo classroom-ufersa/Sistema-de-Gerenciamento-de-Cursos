@@ -34,7 +34,7 @@ Cursos *Criar_Cursos(char *nome, int codigo, int vagas) {
 }
 
 void Imprimir_Cursos(Cursos *Var_Cursos, int contador2) {
-    printf("==========================");
+    printf("\n==========================");
     printf("\nDISCIPLINAS DISPONIVEIS: \n");
     if(contador2 == 0) {
         printf("Nao ha nada cadastrado! \n");
@@ -61,10 +61,9 @@ int CompararCodigo(Cursos *Var_Cursos, int codigo, int contador2) {
 void MatricularAlunoEmCurso(Alunos* aluno, Cursos* curso, ListaMatricula **lista) {
     // Verifica se o curso tem vagas disponíveis
     if (curso->vagas > 0) {
-        // Verifica se o aluno já está matriculado no curso
+
         ListaMatricula *NovaLista  = *lista;
 
-        // Aloca espaço para a matrícula
         ListaMatricula* matricula = (ListaMatricula*)malloc(sizeof(ListaMatricula));
         if (matricula == NULL) {
             printf("Erro ao alocar memória para matrícula!\n");
@@ -73,22 +72,22 @@ void MatricularAlunoEmCurso(Alunos* aluno, Cursos* curso, ListaMatricula **lista
 
         while (NovaLista != NULL) {
             if (NovaLista->aluno.numero_matricula == aluno->numero_matricula && NovaLista->curso.codigo == curso->codigo) {
+                printf("\n=====================================================\n");
                 printf("O aluno ja esta matriculado nesta disciplina.\n");
+                printf("=====================================================\n");
                 return;
             }
             NovaLista = NovaLista->prox;
         }
 
-        // Preenche os dados da matrícula
         matricula->aluno = *aluno;
         matricula->curso = *curso;
         matricula->prox = NULL;
 
-        // Adiciona a matrícula à lista de matrículas do curso
         if (*lista == NULL) {
             *lista = matricula;
         } else {
-            // Percorre a lista de matrículas e insere no final
+            // Percorre a lista de matriculas e insere no final
             ListaMatricula* NovaLista = *lista;
             while (NovaLista->prox != NULL) {
                 NovaLista = NovaLista->prox;
@@ -98,10 +97,14 @@ void MatricularAlunoEmCurso(Alunos* aluno, Cursos* curso, ListaMatricula **lista
 
         // Decrementa o número de vagas disponíveis no curso
         curso->vagas--;
-
+        
+        printf("\n=======================================\n");
         printf("Aluno %s matriculado no curso %s.\n", aluno->nome, curso->nome);
+        printf("=========================================\n");
     } else {
+        printf("\n=====================================\n");
         printf("Desculpe, o curso %s esta lotado.\n", curso->nome);
+        printf("=======================================\n");
     }
 }
 
@@ -136,14 +139,6 @@ void ImprimirListaMatriculas(ListaMatricula *lista, Cursos *cursos, int contador
         }
 
         printf("=====================\n\n");
-        printf("Digite 2 para sair -> ");
-        scanf("%d", &Sair);
-        if(Sair != 2) {
-            while(Sair != 2) {
-                printf("Digite 2 para sair -> ");
-                scanf("%d", &Sair);
-            }
-        }
     }
 }
 
@@ -163,6 +158,7 @@ void ExcluirMatricula(ListaMatricula **lista, char *NomeAluno, int CodigoDiscipl
             free(ListaAtual); // Exclui a matricula
             printf("Matricula excluida com sucesso! \n");
             return; // Sai no momento que a matricula for excluida
+            //break;
         }
 
         ListaAnterior = ListaAtual;
@@ -183,36 +179,32 @@ void BuscarCurso(Cursos *cursos, char *NomeCurso, int contador) {
     if(!strcmp(NomeCurso, cursos->nome) == 0) {
         printf("\nCurso nao encontrado! \n\n");
     }
-
 }
 
+void EditarMatriculaAluno(ListaMatricula **lista, char* nomeAlunoEditar, char* novoNomeAluno, Alunos* aluno, int contador) {
+    ListaMatricula *temp = *lista;
+    int matriculaEncontrada = 0;
 
-void tratativa(int erro){
-    char letra=erro;
-    
-    while(letra!='\n'){
-        
-        letra=getchar();
+    while (temp != NULL) {
+        if (strcmp(temp->aluno.nome, nomeAlunoEditar) == 0) {
+            // Encontrou a matrícula com o aluno a ser editado
+            strcpy(temp->aluno.nome, novoNomeAluno);
+            
+            for(int i = 0; i < contador; i++) {
+                if(strcmp(aluno[i].nome, nomeAlunoEditar) == 0) {
+                    strcpy(aluno[i].nome, novoNomeAluno);
+                }
+            }
 
+            matriculaEncontrada = 1;
+            break;
+        }
+        temp = temp->prox;
     }
-    system("cls");
 
+    if (matriculaEncontrada) {
+        printf("Nome do aluno atualizado com sucesso!\n");
+    } else {
+        printf("\nAluno nao encontrado na lista de matriculas.\n");
+    }
 }
-
-void CorrecaoNome(char *nomeF){
-	int Inicial=1,i;
-	
-	for(i=0;i<strlen(nomeF);i++){
-        if(isspace(nomeF[i])){
-            Inicial=1;
-        }else if(Inicial){
-		    nomeF[i]=toupper(nomeF[i]);
-		    Inicial=0;
-		}else {
-		    nomeF[i]=tolower(nomeF[i]);
-		}
-		
-	}
-
-}
-
