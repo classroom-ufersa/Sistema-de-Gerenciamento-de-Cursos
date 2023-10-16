@@ -15,7 +15,7 @@ O código em questão consiste na implementação de dois Tipos Abstratos de Dad
 * <strong>Realizar matricula;</strong>
  Esta função permite inscrever alunos em cursos específicos. 
 
-* <strong>Excluir matricula</strong>
+* <strong>Excluir matricula;</strong>
 Esta função permite a remoção de um aluno de um curso específico.
 
 * <strong>Listar matriculados;</strong>
