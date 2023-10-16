@@ -341,7 +341,9 @@ void FormatarString(char*nomeF){
 		
 	}
 	nomeF[j]='\0';
-}
+
+	}
+
 
 void tratativa(int erro){
     char letra=erro;

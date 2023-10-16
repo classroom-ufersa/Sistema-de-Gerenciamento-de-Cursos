@@ -371,7 +371,11 @@ int main() {
                                     getchar();
                                     printf("\nInforme o novo nome: -> ");
                                     scanf(" %[^\n]", NovoNomeAluno);
+
                                     LimparBuffer();
+
+                                    FormatarString(NovoNomeAluno);
+
                                     EditarNomeAluno(&Lista, MatriculaAlunoEditar, NovoNomeAluno, Var_Alunos, contador);
                                     break;
                                 case 2:
