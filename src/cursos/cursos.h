@@ -33,4 +33,6 @@ void VagasDisponiveis(Cursos *curso, int contador);
 
 void QntAlunosCurso(ListaMatricula **lista, int CodigoCurso);
 
+void FormatarString(char*nomeF);
+
 #endif //CURSOS_H
