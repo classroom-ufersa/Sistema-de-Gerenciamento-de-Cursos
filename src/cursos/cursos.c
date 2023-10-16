@@ -318,3 +318,21 @@ void QntAlunosCurso(ListaMatricula **lista, int CodigoCurso) {
         printf("O curso nao possui alunos matriculados \n");
     }
 }
+
+void FormatarString(char*nomeF){
+	
+	int Inicial=1,i;// Inicial serve para identificar se a próxima letra é maiuscula.
+	
+	for(i=0;i<strlen(nomeF);i++){// Comparando o contador com otamalho da string.
+        if(isspace(nomeF[i])){// Isspace identifica se a um espaço em branco na posiçao
+            Inicial=1;
+        }else if(Inicial){
+		    nomeF[i]=toupper(nomeF[i]);// Toupper é a função que transforma a letra em maiuscula.
+		    Inicial=0;
+		}else {
+		    nomeF[i]=tolower(nomeF[i]);// Tolower é a função que transforma a letra em minuscula.
+		}
+		
+	}
+	
+}

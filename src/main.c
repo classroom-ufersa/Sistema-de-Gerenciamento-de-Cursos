@@ -43,6 +43,7 @@ int main() {
                         contador++;
                         printf("Informe o nome do aluno(a) %i: -> ", contador);
                         scanf(" %[^\n]", NomeAluno);
+                        FormatarString(NomeAluno);
                         getchar();
                         printf("Infome o numero de matricula do aluno(a) %i: -> ", contador);
                         scanf("%d", &NumeroMatricula);
@@ -92,6 +93,7 @@ int main() {
                             contador2++;
                             printf("\nInfome a disciplina: -> ");
                             scanf(" %[^\n]", NomeCurso);
+                            FormatarString(NomeCurso);
                             getchar();
                             printf("Informe o codigo do curso: -> ");
                             scanf("%d", &CodigoCurso);
