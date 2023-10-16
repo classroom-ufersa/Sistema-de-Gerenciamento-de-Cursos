@@ -50,4 +50,6 @@ void FormatarString(char*nomeF);
 // Função para receber entradas do tipo int
 void tratativa(int erro);
 
+void LimparBuffer();
+
 #endif //CURSOS_H
