@@ -354,3 +354,12 @@ void tratativa(int erro){
     system("cls");
 
 }
+
+void LimparBuffer(){
+  
+    int limpar;
+
+    do{
+        limpar = getchar();
+    }while(limpar != '\n');
+}
