@@ -336,3 +336,15 @@ void FormatarString(char*nomeF){
 	}
 	
 }
+
+void tratativa(int erro){
+    char letra=erro;
+
+    while(letra!='\n'){
+
+        letra=getchar();
+
+    }
+    system("cls");
+
+}

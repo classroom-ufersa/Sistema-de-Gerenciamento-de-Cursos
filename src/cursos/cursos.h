@@ -35,4 +35,6 @@ void QntAlunosCurso(ListaMatricula **lista, int CodigoCurso);
 
 void FormatarString(char*nomeF);
 
+void tratativa(int erro);
+
 #endif //CURSOS_H

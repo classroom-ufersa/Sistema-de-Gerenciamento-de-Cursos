@@ -27,6 +27,7 @@ int main() {
         menu();
         printf("-> ");
         scanf("%d", &MenuEscolha);
+        tratativa(MenuEscolha);
 
         switch(MenuEscolha) {
         case 1:
@@ -37,6 +38,7 @@ int main() {
                 int Comparar = 0;
                 printf("| 1.Criar Aluno | 2. Voltar ao Menu | -> ");
                 scanf("%d", &escolha);
+                tratativa(escolha);
 
                 switch(escolha) {
                     case 1:
@@ -47,6 +49,7 @@ int main() {
                         getchar();
                         printf("Infome o numero de matricula do aluno(a) %i: -> ", contador);
                         scanf("%d", &NumeroMatricula);
+                        tratativa(NumeroMatricula);
 
                         Comparar = CompararMatricula(Var_Alunos, NumeroMatricula, contador);
 
@@ -87,6 +90,7 @@ int main() {
                     int Comparar = 0;
                     printf("| 1.Criar Curso | 2.Voltar ao Menu | -> ");
                     scanf("%d", &escolha);
+                    tratativa(escolha);
                     
                     switch(escolha) {
                         case 1:
@@ -97,6 +101,7 @@ int main() {
                             getchar();
                             printf("Informe o codigo do curso: -> ");
                             scanf("%d", &CodigoCurso);
+                            tratativa(CodigoCurso);
                             Comparar = CompararCodigo(Var_Cursos, CodigoCurso, contador2);
                             system("cls");
                             if(Comparar == 2) {
@@ -142,10 +147,12 @@ int main() {
                     if(contador == 0 || contador2 == 0) {
                         printf("\nDigite 2 para sair! -> \n");
                         scanf("%d", &escolha);
+                        tratativa(escolha);
                         if(escolha != 2) {
                             while(escolha != 2) {
                                 printf("\nDigite 2 para sair! -> \n");
                                 scanf("%d", &escolha);
+                                tratativa(escolha);
                             }
                         }
                     } else {
@@ -153,6 +160,7 @@ int main() {
                         contador3 = contador;
                         printf("Informe | 1. MATRICULA DO ALUNO | 2. SAIR DA MATRICULA |: -> \n");
                         scanf("%d", &escolha);
+                        tratativa(escolha);
 
                         switch(escolha) {
                             case 1:
@@ -171,10 +179,12 @@ int main() {
                         }
                         printf("Informe | 1.CODIGO | 2.SAIR DA MATRICULA |: -> ");
                         scanf("%d", &escolha);
+                        tratativa(escolha);
                         switch(escolha) {
                             case 1:
                                 printf("Digite o codigo: -> ");
                                 scanf("%d", &codigo);
+                                tratativa(codigo);
                                 break;    
                             case 2:
                                 break;
@@ -221,6 +231,7 @@ int main() {
                     ImprimirListaMatriculas(Lista, Var_Cursos, contador2);
                     printf("| 1.Excluir Matricula | 2. Voltar ao Menu | -> ");
                     scanf("%d", &escolha);
+                    tratativa(escolha);
 
                     switch(escolha) {
                         case 1:
@@ -233,9 +244,11 @@ int main() {
                             }
                             printf("\nInforme o Nome do Aluno: -> ");
                             scanf(" %[^\n]", NomeAluno);
+                            FormatarString(NomeAluno);
                             getchar();
                             printf("Informe o Codigo do Curso: -> ");
                             scanf("%d", &CodigoDisciplina);
+                            tratativa(CodigoDisciplina);
                             ExcluirMatricula(&Lista, NomeAluno, Var_Cursos, CodigoDisciplina);
                         break;
                         case 2:
@@ -256,6 +269,7 @@ int main() {
                     while(SairCase != 2) {
                         printf("Digite 2 para sair -> ");
                         scanf("%d", &SairCase);
+                        tratativa(SairCase);
                     }
                 }
                 break;
@@ -266,12 +280,14 @@ int main() {
                 while(escolha != 2) {
                     printf("| 1.Buscar Curso | 2. Voltar ao Menu | -> ");
                     scanf("%d", &escolha);
+                    tratativa(escolha);
 
                     switch(escolha) {
                         case 1:
                             system("cls");
                             printf("Informe o nome do curso: -> ");
                             scanf(" %[^\n]", NomeCurso);
+                            FormatarString(NomeCurso);
                             getchar();
                             BuscarCurso(Var_Cursos, NomeCurso, contador2);
                             break;
@@ -294,6 +310,7 @@ int main() {
                 while(escolha != 2) {
                     printf("\n| 1.Editar matricula | 2.Voltar ao Menu | -> ");
                     scanf("%d", &escolha);
+                    tratativa(escolha);
                     /* if(escolha == 2) {
                         break;
                     }  */
@@ -309,6 +326,7 @@ int main() {
                             printf("===========================\n");
                             printf("-> ");
                             scanf("%d", &escolha2);
+                            tratativa(escolha2);
 
                             switch(escolha2) {
                                 case 1:
@@ -334,8 +352,10 @@ int main() {
                                     ImprimirListaMatriculas(Lista, Var_Cursos, contador2);
                                     printf("Informe a matricula do Aluno que deseja editar: -> ");
                                     scanf("%d", &MatriculaAlunoEditar);
+                                    tratativa(MatriculaAlunoEditar);
                                     printf("Informe a matricula atual do aluno: -> ");
                                     scanf("%d", &NovaMatriculaAluno);
+                                    tratativa(NovaMatriculaAluno);
                                     EditarMatriculaAluno(&Lista, MatriculaAlunoEditar, NovaMatriculaAluno, Var_Alunos, contador);
                                     break;
                                 case 3:
@@ -371,6 +391,7 @@ int main() {
                 while(SairCase != 2) {
                     printf("Digite 2 para sair! \n");
                     scanf("%d", &SairCase);
+                    tratativa(SairCase);
                 }
                 break;
             case 9:
@@ -379,6 +400,7 @@ int main() {
                 while(escolha != 2) {
                     printf("\n| 1.Consultar Quantitativo de Alunos no Curso | 2.Voltar ao Menu | -> ");
                     scanf("%d", &escolha);
+                    tratativa(escolha);
 
                     switch(escolha) {
                         case 1:
