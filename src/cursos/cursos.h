@@ -37,4 +37,6 @@ void FormatarString(char*nomeF);
 
 void tratativa(int erro);
 
+void LimparBuffer();
+
 #endif //CURSOS_H
