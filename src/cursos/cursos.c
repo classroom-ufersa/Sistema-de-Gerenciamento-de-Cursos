@@ -332,9 +332,7 @@ void FormatarString(char*nomeF){
 		}else {
 		    nomeF[i]=tolower(nomeF[i]);// Tolower é a função que transforma a letra em minuscula.
 		}
-		
 	}
-	
 }
 
 void tratativa(int erro){
