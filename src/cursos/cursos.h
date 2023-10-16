@@ -14,7 +14,7 @@ Cursos *Criar_Cursos(char *nome, int codigo, int vagas);
 // Função para imprimir cursos
 void Imprimir_Cursos(Cursos *Var_Cursos, int contador2);
 
-// Função para comparar matriculas
+// Função para comparar codigo do curso
 int CompararCodigo(Cursos *Var_Cursos, int codigo, int contador2);
 
 // Função para matricular aluno em um curso em uma lista
@@ -50,6 +50,7 @@ void FormatarString(char*nomeF);
 // Função para receber entradas do tipo int
 void tratativa(int erro);
 
+// Função para limpar o buffer
 void LimparBuffer();
 
 #endif //CURSOS_H
