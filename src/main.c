@@ -59,6 +59,7 @@ int main() {
                             if(Comparar == 1) {
                                 printf("Informe o numero da matricula novamente: -> ");
                                 scanf("%d", &NumeroMatricula);
+                                tratativa(NumeroMatricula);
                                 Comparar = CompararMatricula(Var_Alunos, NumeroMatricula, contador);
                             }
                         }
@@ -66,6 +67,7 @@ int main() {
                         for(int j = 0; j < 3; j++) {
                             printf("Digite a nota %i: -> ", j + 1);
                             scanf("%f", &notas[j]);
+                            
                         }
 
                         Alunos *VarAluno = Criar_Alunos(NomeAluno, NumeroMatricula, notas);
